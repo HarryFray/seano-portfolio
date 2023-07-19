@@ -11,7 +11,12 @@ const Home = () => {
   return (
     <main className="min-h-screen">
       <Image
-        style={{ zIndex: -1, filter: "brightness(0.7)" }}
+        style={{
+          zIndex: -1,
+          opacity: 1,
+          filter: "brightness(0.7)",
+          animation: "fadein 2s",
+        }}
         src={currentProject.backgroundImage}
         layout="fill"
         objectFit="cover"
