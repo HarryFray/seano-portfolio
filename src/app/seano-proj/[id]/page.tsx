@@ -8,7 +8,7 @@ const Project = ({ params }: { params: { id: string } }) => {
         className="w-fit text-base font-semibold hover:underline cursor-pointer"
         href="/"
       >
-        {"HOME"}
+        GO HOME FELISHA
       </Link>
     </main>
   );

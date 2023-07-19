@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 
-import TestBackgroundIMG from "../../public/test-background.jpg";
+import TestBackgroundIMG_A from "../../public/test-bkg-a.jpg";
+import TestBackgroundIMG_B from "../../public/test-bkg-b.jpg";
 
 interface Project {
   title: string;
@@ -15,42 +16,42 @@ const VIDEOGRAPHY_PROJECTS: Project[] = [
   {
     title: "Ethereal Elopement",
     path: "ethereal_elopement",
-    backgroundImage: TestBackgroundIMG,
+    backgroundImage: TestBackgroundIMG_A,
   },
   {
     title: "Pixelated Dreams",
     path: "pixelated_dreams",
-    backgroundImage: TestBackgroundIMG,
+    backgroundImage: TestBackgroundIMG_B,
   },
   {
     title: "Wanderlust Chronicles",
     path: "wanderlust_chronicles",
-    backgroundImage: TestBackgroundIMG,
+    backgroundImage: TestBackgroundIMG_A,
   },
   {
     title: "Rhythm of the Streets",
     path: "rhythm_of_the_streets",
-    backgroundImage: TestBackgroundIMG,
+    backgroundImage: TestBackgroundIMG_B,
   },
   {
     title: "Gadgetopia Unveiled",
     path: "gadgetopia_unveiled",
-    backgroundImage: TestBackgroundIMG,
+    backgroundImage: TestBackgroundIMG_A,
   },
   {
     title: "Voices of Change",
     path: "voices_of_change",
-    backgroundImage: TestBackgroundIMG,
+    backgroundImage: TestBackgroundIMG_B,
   },
   {
     title: "Runway Enchantment",
     path: "runway_enchantment",
-    backgroundImage: TestBackgroundIMG,
+    backgroundImage: TestBackgroundIMG_A,
   },
   {
     title: "Victory Symphony",
     path: "victory_symphony",
-    backgroundImage: TestBackgroundIMG,
+    backgroundImage: TestBackgroundIMG_B,
   },
 ];
 
@@ -60,7 +61,6 @@ const Home = () => {
   return (
     <main className="min-h-screen">
       <div className="p-4">
-        <h1>{currentProject.title}</h1>
         <Image
           alt="some image"
           src={currentProject.backgroundImage}
