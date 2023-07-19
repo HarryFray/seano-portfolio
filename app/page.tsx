@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 
-import TestBackgroundIMG_A from "../../public/test-bkg-a.jpg";
-import TestBackgroundIMG_B from "../../public/test-bkg-b.jpg";
+import TestBackgroundIMG_A from "../public/test-bkg-a.jpg";
+import TestBackgroundIMG_B from "../public/test-bkg-b.jpg";
 
 interface Project {
   title: string;
