@@ -38,17 +38,17 @@ const VIDEOGRAPHY_PROJECTS = [
 
 const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <div className="w-full items-start justify-start">
+        <div className="w-fit">
           {VIDEOGRAPHY_PROJECTS.map(({ title, path }, i) => {
             return (
               <h2
-                className="text-base font-semibold hover:underline cursor-pointer"
+                className="w-fit text-base font-semibold hover:underline cursor-pointer"
+                key={`${path}${i}`}
                 onClick={() => {
                   alert(`Navigate to ${path}`);
                 }}
-                key={`${path}${i}`}
               >
                 {title}
               </h2>
