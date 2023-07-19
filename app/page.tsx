@@ -24,10 +24,10 @@ const Home = () => {
         alt={`${currentProject.title} background image`}
         placeholder="blur"
       />
-      <div className="p-4">
-        <h1 className="text-4xl font-bold text-white">SeanO PortfoliO</h1>
-      </div>
-      <div className="mx-40 my-80 flex align-center justify-between">
+      <h1 className="text-4xl font-bold text-white absolute p-4">
+        SeanO PortfoliO
+      </h1>
+      <div className="mx-40 flex items-center justify-between min-h-screen">
         <div className="w-fit flex flex-col">
           {VIDEOGRAPHY_PROJECTS.map(({ title, path }, i) => {
             return (
