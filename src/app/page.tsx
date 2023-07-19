@@ -1,4 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
+
+import TestBackgroundIMG from "../../public/test-background.jpg";
 
 const VIDEOGRAPHY_PROJECTS = [
   {
@@ -37,8 +40,16 @@ const VIDEOGRAPHY_PROJECTS = [
 
 const Home = () => {
   return (
-    <>
+    <main className="min-h-screen">
       <div className="p-4">
+        <Image
+          alt="some image"
+          src={TestBackgroundIMG}
+          style={{ zIndex: -1 }}
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+        />
         <h1 className="text-2xl font-bold">SeanO Portfolio</h1>
       </div>
       <div className="p-24">
@@ -56,7 +67,7 @@ const Home = () => {
           })}
         </div>
       </div>
-    </>
+    </main>
   );
 };
 
