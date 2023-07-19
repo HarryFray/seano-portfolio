@@ -1,5 +1,4 @@
-"use client";
-import Image from "next/image";
+import Link from "next/link";
 
 const VIDEOGRAPHY_PROJECTS = [
   {
@@ -38,28 +37,26 @@ const VIDEOGRAPHY_PROJECTS = [
 
 const Home = () => {
   return (
-    <main className="min-h-screen">
+    <>
       <div className="p-4">
         <h1 className="text-2xl font-bold">SeanO Portfolio</h1>
       </div>
       <div className="p-24">
-        <div className="w-fit">
+        <div className="w-fit flex flex-col">
           {VIDEOGRAPHY_PROJECTS.map(({ title, path }, i) => {
             return (
-              <h2
+              <Link
                 className="w-fit text-base font-semibold hover:underline cursor-pointer"
                 key={`${path}${i}`}
-                onClick={() => {
-                  alert(`Navigate to ${path}`);
-                }}
+                href={`/seano-proj/${path}`}
               >
                 {title}
-              </h2>
+              </Link>
             );
           })}
         </div>
       </div>
-    </main>
+    </>
   );
 };
 
