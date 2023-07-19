@@ -18,23 +18,18 @@ const Home = () => {
           objectFit="cover"
           quality={100}
           alt={`${currentProject.title} background image`}
+          placeholder="blur"
         />
-        <Image
-          style={{ position: "absolute", top: 400, right: 100 }}
-          src={currentProject.gifPreviewImage}
-          alt={`${currentProject.title} gif`}
-          quality={100}
-        />
-        <h1 className="text-2xl font-bold">SeanO Portfolio</h1>
+        <h1 className="text-2xl font-bold text-white">SeanO Portfolio</h1>
       </div>
-      <div className="p-24">
+      <div className="mx-40 my-80 flex align-center justify-between">
         <div className="w-fit flex flex-col">
           {VIDEOGRAPHY_PROJECTS.map(({ title, path }, i) => {
             return (
               <Link
                 key={`${path}${i}`}
                 onMouseEnter={() => setCurrentProject(VIDEOGRAPHY_PROJECTS[i])}
-                className="w-fit text-base font-semibold hover:underline cursor-pointer mb-1"
+                className="w-fit text-base font-semibold hover:line-through cursor-pointer mb-1.5 text-white "
                 href={`/seano-proj/${path}`}
               >
                 {title}
@@ -42,6 +37,11 @@ const Home = () => {
             );
           })}
         </div>
+        <Image
+          src={currentProject.gifPreviewImage}
+          alt={`${currentProject.title} gif`}
+          quality={100}
+        />
       </div>
     </main>
   );
