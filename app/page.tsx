@@ -18,12 +18,12 @@ const Home = () => {
           layout="fill"
           objectFit="cover"
           quality={100}
-          alt="some image"
+          alt={`${currentProject.title} background image`}
         />
         <Image
           style={{ position: "absolute", top: 400, right: 100 }}
           src={TestGifA}
-          alt="some image"
+          alt={`${currentProject.title} gif`}
           quality={100}
         />
         <h1 className="text-2xl font-bold">SeanO Portfolio</h1>
