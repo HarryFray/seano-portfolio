@@ -38,8 +38,11 @@ const VIDEOGRAPHY_PROJECTS = [
 
 const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="w-full items-start justify-start">
+    <main className="min-h-screen">
+      <div className="p-4">
+        <h1 className="text-2xl font-bold">SeanO Portfolio</h1>
+      </div>
+      <div className="p-24">
         <div className="w-fit">
           {VIDEOGRAPHY_PROJECTS.map(({ title, path }, i) => {
             return (
