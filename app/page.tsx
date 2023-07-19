@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import TestGifA from "../public/test-gif-a.gif";
 import { VIDEOGRAPHY_PROJECTS } from "./constants";
 
 const Home = () => {
@@ -22,7 +21,7 @@ const Home = () => {
         />
         <Image
           style={{ position: "absolute", top: 400, right: 100 }}
-          src={TestGifA}
+          src={currentProject.gifPreviewImage}
           alt={`${currentProject.title} gif`}
           quality={100}
         />
@@ -35,7 +34,7 @@ const Home = () => {
               <Link
                 key={`${path}${i}`}
                 onMouseEnter={() => setCurrentProject(VIDEOGRAPHY_PROJECTS[i])}
-                className="w-fit text-base font-semibold hover:underline cursor-pointer"
+                className="w-fit text-base font-semibold hover:underline cursor-pointer mb-1"
                 href={`/seano-proj/${path}`}
               >
                 {title}
