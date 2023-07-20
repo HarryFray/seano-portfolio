@@ -16,26 +16,26 @@ const Home = ({ allProjects }: { allProjects: Project[] }) => {
           filter: "brightness(0.7)",
           animation: "fadein 2s",
         }}
-        src={currentProject?.background?.responsiveImage?.base64}
+        src={currentProject?.landingBackground?.responsiveImage?.base64}
         layout="fill"
         objectFit="cover"
         quality={100}
         alt={`${currentProject.title} background image`}
-        placeholder="blur"
-        blurDataURL={currentProject?.background?.responsiveImage?.base64}
+        // placeholder="blur"
+        // blurDataURL={currentProject?.landingBackground?.responsiveImage?.base64}
       />
       <h1 className="text-4xl font-bold text-white absolute p-4">
         SeanO PortfoliO
       </h1>
       <div className="mx-40 flex items-center justify-between min-h-screen">
         <div className="w-fit flex flex-col">
-          {allProjects.map(({ title, id }, i) => {
+          {allProjects.map(({ title, slug }, i) => {
             return (
               <Link
-                key={`${id}${i}`}
+                key={`${slug}${i}`}
                 onMouseEnter={() => setCurrentProject(allProjects[i])}
                 className="w-fit text-base font-semibold hover:line-through cursor-pointer mb-1.5 text-white "
-                href={`/seano-proj/${id}`}
+                href={`/seano-proj/${slug}`}
               >
                 {title}
               </Link>
@@ -48,8 +48,8 @@ const Home = ({ allProjects }: { allProjects: Project[] }) => {
           quality={100}
           width={500}
           height={500}
-          blurDataURL={currentProject?.background?.responsiveImage?.base64}
-          placeholder="blur"
+          //   blurDataURL={currentProject?.landingGif?.responsiveImage?.base64}
+          //   placeholder="blur"
         />
       </div>
     </main>

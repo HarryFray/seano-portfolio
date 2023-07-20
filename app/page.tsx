@@ -5,8 +5,8 @@ const PAGE_CONTENT_QUERY = `{
   allProjects {
     id
     title
- 
-    background {
+    slug
+    landingBackground {
       responsiveImage {
         base64
         src

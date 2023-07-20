@@ -1,8 +1,8 @@
 export interface Project {
   title: string;
-  slug: string;
   id: string;
-  background: {
+  slug: string;
+  landingBackground: {
     responsiveImage: {
       src: string;
       base64: string;
