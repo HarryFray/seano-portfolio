@@ -1,7 +1,7 @@
-import LandingPage from "./landingPage";
+import LandingPage from "./components/landingPage";
 import peformRequest from "./lib/datocms";
 
-const PAGE_CONTENT_QUERY = `{
+const LANDING_PAGE_QUERY = `{
   allProjects {
     id
     title
@@ -22,7 +22,7 @@ const PAGE_CONTENT_QUERY = `{
 }`;
 
 const Home = async () => {
-  const { data } = await peformRequest({ query: PAGE_CONTENT_QUERY });
+  const { data } = await peformRequest({ query: LANDING_PAGE_QUERY });
 
   const { allProjects } = data;
 

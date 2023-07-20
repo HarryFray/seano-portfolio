@@ -1,4 +1,4 @@
-export interface Project {
+export interface IProject {
   title: string;
   id: string;
   slug: string;

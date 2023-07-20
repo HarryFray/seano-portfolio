@@ -2,9 +2,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Project } from "./constants";
+import { IProject } from "../constants";
 
-const Home = ({ allProjects }: { allProjects: Project[] }) => {
+interface IProps {
+  allProjects: IProject[];
+}
+
+const Home = ({ allProjects }: IProps) => {
   const [currentProject, setCurrentProject] = useState(allProjects[0]);
 
   return (
