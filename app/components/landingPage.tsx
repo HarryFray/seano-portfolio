@@ -28,9 +28,6 @@ const Home = ({ allProjects }: IProps) => {
         placeholder="blur"
         blurDataURL={currentProject?.landingBackground?.responsiveImage?.base64}
       />
-      <h1 className="text-4xl font-bold text-white absolute p-4">
-        SeanO PortfoliO
-      </h1>
       <div className="mx-40 flex items-center justify-between min-h-screen">
         <div className="w-fit flex flex-col">
           {allProjects.map(({ title, slug }, i) => {
