@@ -16,13 +16,13 @@ const Home = ({ allProjects }: { allProjects: Project[] }) => {
           filter: "brightness(0.7)",
           animation: "fadein 2s",
         }}
-        src={currentProject?.landingBackground?.responsiveImage?.base64}
+        src={currentProject?.landingBackground?.responsiveImage?.src}
         layout="fill"
         objectFit="cover"
         quality={100}
         alt={`${currentProject.title} background image`}
-        // placeholder="blur"
-        // blurDataURL={currentProject?.landingBackground?.responsiveImage?.base64}
+        placeholder="blur"
+        blurDataURL={currentProject?.landingBackground?.responsiveImage?.base64}
       />
       <h1 className="text-4xl font-bold text-white absolute p-4">
         SeanO PortfoliO
@@ -43,13 +43,13 @@ const Home = ({ allProjects }: { allProjects: Project[] }) => {
           })}
         </div>
         <Image
-          src={currentProject?.landingGif?.responsiveImage?.base64}
+          src={currentProject?.landingGif?.responsiveImage?.src}
           alt={`${currentProject.title} gif`}
           quality={100}
           width={500}
           height={500}
-          //   blurDataURL={currentProject?.landingGif?.responsiveImage?.base64}
-          //   placeholder="blur"
+          blurDataURL={currentProject?.landingGif?.responsiveImage?.base64}
+          placeholder="blur"
         />
       </div>
     </main>
