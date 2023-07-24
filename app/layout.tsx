@@ -18,7 +18,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Link href="/" className="text-4xl font-bold text-white">
             SeanO PortfoliO
           </Link>
-          <h2 className="text-2xl font-bold text-white">Contact</h2>
+          <Link
+            href="/contact"
+            className="text-2xl font-bold hover:line-through cursor-pointer mb-1.5 text-white "
+          >
+            Contact
+          </Link>
         </header>
         {children}
       </body>
