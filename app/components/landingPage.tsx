@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { IProject } from "../constants";
@@ -10,6 +10,14 @@ interface IProps {
 
 const Home = ({ allProjects }: IProps) => {
   const [currentProject, setCurrentProject] = useState(allProjects[0]);
+  const [showCurrentGif, setshowCurrentGif] = useState(true);
+
+  useEffect(() => {
+    setshowCurrentGif(false);
+    setTimeout(() => {
+      setshowCurrentGif(true);
+    }, 500);
+  }, [currentProject]);
 
   return (
     <main className="min-h-screen">
@@ -43,15 +51,18 @@ const Home = ({ allProjects }: IProps) => {
             );
           })}
         </div>
-        <Image
-          src={currentProject?.landingGif?.responsiveImage?.src}
-          alt={`${currentProject.title} gif`}
-          quality={100}
-          width={500}
-          height={500}
-          blurDataURL={currentProject?.landingGif?.responsiveImage?.base64}
-          placeholder="blur"
-        />
+        {showCurrentGif && (
+          <Image
+            src={currentProject?.landingGif?.responsiveImage?.src}
+            alt={`${currentProject.title} gif`}
+            quality={100}
+            width={500}
+            height={500}
+            blurDataURL={currentProject?.landingGif?.responsiveImage?.base64}
+            placeholder="blur"
+            style={{ animation: "fadein 2s" }}
+          />
+        )}
       </div>
     </main>
   );
