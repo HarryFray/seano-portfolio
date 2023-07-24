@@ -3,8 +3,13 @@ import Link from "next/link";
 const Contact = () => {
   return (
     <main className="min-h-screen p-40">
-      <h1 className="text-4xl font-bold">SEAN O’NEILL</h1>
-      <p className="mt-4">
+      <Link
+        href="/"
+        className="text-4xl font-bold text-center hover:line-through"
+      >
+        SEAN O’NEILL
+      </Link>
+      <p className="mt-16">
         Somewhere between wonder and memory, lies the most complex vitality —
         that which makes us human. A system of light and sound, feeling and
         color. There’s an intersection found here, that collectively reminds us
@@ -17,18 +22,12 @@ const Contact = () => {
         of the incredible stories we all chase, and the places between where we
         land our feet.
       </p>
-      <div className="flex flex-col mt-4">
+      <div className="flex flex-col mt-20 ">
         <Link
           className="w-fit text-base font-semibold hover:line-through mb-1.5"
           href="mailto:hi@SEANOfilms.com"
         >
           hi@SEANOfilms.com
-        </Link>
-        <Link
-          className="w-fit text-base font-semibold hover:line-through mb-1.5"
-          href="https://vimeo.com/seanofilms"
-        >
-          VIMEO
         </Link>
         <Link
           className="w-fit text-base font-semibold hover:line-through mb-1.5"
@@ -38,9 +37,15 @@ const Contact = () => {
         </Link>
         <Link
           className="w-fit text-base font-semibold hover:line-through mb-1.5"
-          href="hi@SEANOfilms.com"
+          href="tel:+17244959788"
         >
           724.495.9788
+        </Link>
+        <Link
+          className="w-fit text-base font-semibold hover:line-through mb-1.5"
+          href="https://vimeo.com/seanofilms"
+        >
+          VIMEO
         </Link>
       </div>
     </main>

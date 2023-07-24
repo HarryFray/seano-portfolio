@@ -10,7 +10,11 @@ export const metadata: Metadata = {
   description: "SeanO Portfolio Site",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -19,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             href="/"
             className="text-4xl font-bold text-white hover:line-through"
           >
-            SeanO PortfoliO
+            SEAN O’NEILL
           </Link>
           <Link
             href="/contact"
