@@ -10,7 +10,7 @@ interface IProps {
 
 const Home = ({ allProjects }: IProps) => {
   const [currentProject, setCurrentProject] = useState(allProjects[0]);
-  const [showCurrentGif, setshowCurrentGif] = useState(true);
+  const [showCurrentGif, setshowCurrentGif] = useState(false);
 
   useEffect(() => {
     setshowCurrentGif(false);
