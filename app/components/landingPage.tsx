@@ -10,24 +10,22 @@ interface IProps {
 
 const Home = ({ allProjects }: IProps) => {
   const [currentProject, setCurrentProject] = useState(allProjects[0]);
-  const [showCurrentGif, setshowCurrentGif] = useState(false);
+
+  const [showCurrentGif, setShowCurrentGif] = useState(false);
 
   useEffect(() => {
-    setshowCurrentGif(false);
+    setShowCurrentGif(false);
     setTimeout(() => {
-      setshowCurrentGif(true);
-    }, 500);
+      setShowCurrentGif(true);
+    }, 1000);
   }, [currentProject]);
+
+
 
   return (
     <main className="min-h-screen">
       <Image
-        style={{
-          zIndex: -1,
-          opacity: 1,
-          filter: "brightness(0.7)",
-          animation: "fadein 2s",
-        }}
+        style={{ zIndex: -1, animation: "fadein 1s" }}
         src={currentProject?.landingBackground?.responsiveImage?.src}
         layout="fill"
         objectFit="cover"
@@ -58,8 +56,6 @@ const Home = ({ allProjects }: IProps) => {
             quality={100}
             width={500}
             height={500}
-            blurDataURL={currentProject?.landingGif?.responsiveImage?.base64}
-            placeholder="blur"
             style={{ animation: "fadein 2s" }}
           />
         )}
