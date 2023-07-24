@@ -35,7 +35,7 @@ const Home = ({ allProjects }: IProps) => {
               <Link
                 key={`${slug}${i}`}
                 onMouseEnter={() => setCurrentProject(allProjects[i])}
-                className="w-fit text-base font-semibold hover:line-through cursor-pointer mb-1.5 text-white "
+                className="w-fit text-base font-semibold hover:line-through mb-1.5 text-white "
                 href={`/seano-proj/${slug}`}
               >
                 {title}

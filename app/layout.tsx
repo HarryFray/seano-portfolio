@@ -15,12 +15,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <header className="absolute p-4 w-screen flex items-center justify-between">
-          <Link href="/" className="text-4xl font-bold text-white">
+          <Link
+            href="/"
+            className="text-4xl font-bold text-white hover:line-through"
+          >
             SeanO PortfoliO
           </Link>
           <Link
             href="/contact"
-            className="text-2xl font-bold hover:line-through cursor-pointer mb-1.5 text-white "
+            className="text-2xl font-bold hover:line-through text-white"
           >
             Contact
           </Link>
