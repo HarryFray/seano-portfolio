@@ -13,27 +13,32 @@ const Home = ({ allProjects }: IProps) => {
 
   const [showCurrentGif, setShowCurrentGif] = useState(false);
 
+  const [showCurrentBackground, setShowCurrentBackground] = useState(false);
+
   useEffect(() => {
     setShowCurrentGif(false);
-    setTimeout(() => {
-      setShowCurrentGif(true);
-    }, 1000);
+    setTimeout(() => setShowCurrentGif(true), 1000);
+
+    setShowCurrentBackground(false);
+    setTimeout(() => setShowCurrentBackground(true), 1);
   }, [currentProject]);
-
-
 
   return (
     <main className="min-h-screen">
-      <Image
-        style={{ zIndex: -1, animation: "fadein 1s" }}
-        src={currentProject?.landingBackground?.responsiveImage?.src}
-        layout="fill"
-        objectFit="cover"
-        quality={100}
-        alt={`${currentProject.title} background image`}
-        placeholder="blur"
-        blurDataURL={currentProject?.landingBackground?.responsiveImage?.base64}
-      />
+      {showCurrentBackground && (
+        <Image
+          style={{ zIndex: -1, animation: "fadeinbackgroundimg 1.5s" }}
+          src={currentProject?.landingBackground?.responsiveImage?.src}
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          alt={`${currentProject.title} background image`}
+          // placeholder="blur"
+          // blurDataURL={
+          //   currentProject?.landingBackground?.responsiveImage?.base64
+          // }
+        />
+      )}
       <div className="mx-40 flex items-center justify-between min-h-screen">
         <div className="w-fit flex flex-col">
           {allProjects.map(({ title, slug }, i) => {
