@@ -23,8 +23,15 @@ const Project = async ({ params }: IProjectProps) => {
   });
 
   return (
-    <main className="min-h-screen p-40">
-      <h1>{data.project.title}</h1>{" "}
+    <main className="flex items-center flex-col min-h-screen p-40">
+      <h1 className="text-2xl text-white">{data.project.title}</h1>
+      <iframe
+        src={data.project.projectVideo}
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        width={800}
+        height={600}
+      />
     </main>
   );
 };
