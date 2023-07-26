@@ -32,7 +32,6 @@ const Project = async ({ params }: IProjectProps) => {
     query: projectQuery(params.project_id),
   });
 
-  console.log({data})
 
   return (
     <main className="flex items-center flex-col min-h-screen p-40">
@@ -45,10 +44,10 @@ const Project = async ({ params }: IProjectProps) => {
         height={600}
       />
       <div className="w-96 flex justify-around">
-        <Link className="text-white" href={`/${data.project.prevProject.slug}`}>
+        <Link className="text-white" href={`${data.project.prevProject.slug}`}>
           Prev
         </Link>
-        <Link className="text-white" href={`/${data.project.nextProject.slug}`}>
+        <Link className="text-white" href={`${data.project.nextProject.slug}`}>
           Next
         </Link>
       </div>
