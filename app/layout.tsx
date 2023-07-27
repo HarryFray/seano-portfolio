@@ -19,6 +19,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className="absolute p-4 w-screen flex items-center justify-between">
+          <link
+            href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&family=Ubuntu+Mono&display=swap"
+            rel="stylesheet"
+          />
           <Link
             href="/"
             className="text-4xl font-bold text-white hover:line-through"

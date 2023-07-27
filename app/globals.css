@@ -13,6 +13,8 @@
   a,
   p  {
     animation: fadein 2s;
+    font-family: 'Prompt';
+    /* font-family: 'Ubuntu Mono'; */
   }
 
   @keyframes fadein {

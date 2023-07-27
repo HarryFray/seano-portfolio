@@ -43,10 +43,6 @@ const Home = ({ allProjects }: IProps) => {
                   objectFit="cover"
                   quality={100}
                   alt={`${title} background image`}
-                  // placeholder="blur"
-                  // blurDataURL={
-                  //   currentProject?.landingBackground?.responsiveImage?.base64
-                  // }
                 />
                 <Link
                   onMouseEnter={() => setCurrentProject(allProjects[i])}
