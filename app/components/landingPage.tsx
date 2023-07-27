@@ -3,7 +3,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { IProject } from "../constants";
-
+import throttle from "lodash/throttle";
 interface IProps {
   allProjects: IProject[];
 }
@@ -18,6 +18,17 @@ const Home = ({ allProjects }: IProps) => {
     setShowCurrentGif(false);
     setTimeout(() => setShowCurrentGif(true), 300);
   }, [currentProject]);
+
+  const handleMouseEvent = throttle(
+    (i: number, eventType: "LEAVE" | "ENTER") => {
+      if (eventType === "ENTER") {
+        setCurrentProject(allProjects[i]);
+      } else {
+        setPrevProject(allProjects[i]);
+      }
+    },
+    1000
+  );
 
   return (
     <main className="min-h-screen">
@@ -45,8 +56,8 @@ const Home = ({ allProjects }: IProps) => {
                   alt={`${title} background image`}
                 />
                 <Link
-                  onMouseEnter={() => setCurrentProject(allProjects[i])}
-                  onMouseLeave={() => setPrevProject(allProjects[i])}
+                  onMouseEnter={() => handleMouseEvent(i, "ENTER")}
+                  onMouseLeave={() => handleMouseEvent(i, "LEAVE")}
                   className="w-fit text-base font-semibold hover:line-through mb-1.5 text-white "
                   href={slug}
                 >
