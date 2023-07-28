@@ -2,7 +2,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { IProject } from "../constants";
+import { IProject } from "../page";
 import throttle from "lodash/throttle";
 interface IProps {
   allProjects: IProject[];
@@ -30,10 +30,18 @@ const Home = ({ allProjects }: IProps) => {
     1000
   );
 
+  const GIF_WIDTH = 500;
+
   return (
     <main className="min-h-screen">
-      <div className="mx-40 flex items-center justify-between min-h-screen">
-        <div className="w-fit flex flex-col">
+      <div
+        className="mx-10 flex flex-col items-center justify-center min-h-screen 
+      lg:flex-row lg:justify-between lg:mx-40"
+      >
+        <div
+          className={`w-[${GIF_WIDTH}px] max-w-full flex flex-col mb-10
+          lg:w-fit lg:m-0`}
+        >
           {allProjects.map(({ title, slug, landingBackground, id }, i) => {
             const isCurrentProject = id === currentProject.id;
             const isPrevProject = id === prevProject.id;
@@ -72,8 +80,8 @@ const Home = ({ allProjects }: IProps) => {
             src={currentProject?.landingGif?.responsiveImage?.src}
             alt={`${currentProject.title} gif`}
             quality={100}
-            width={500}
-            height={500}
+            width={GIF_WIDTH}
+            height={GIF_WIDTH}
             style={{ animation: "fadein 2.5s" }}
           />
         )}

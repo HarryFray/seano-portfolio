@@ -1,7 +1,7 @@
 import LandingPage from "./components/landingPage";
 import peformRequest from "./lib/datocms";
 
-const LANDING_PAGE_QUERY = `{
+const PROJECTS_QUERY = `{
   allProjects {
     id
     title
@@ -21,10 +21,31 @@ const LANDING_PAGE_QUERY = `{
   }
 }`;
 
-const Home = async () => {
-  const { data } = await peformRequest({ query: LANDING_PAGE_QUERY });
+export interface IProject {
+  id: string;
+  title: string;
+  slug: string;
+  projectVideo: string;
+  prevProject: IProject;
+  nextProject: IProject;
+  landingBackground: {
+    responsiveImage: {
+      src: string;
+      base64: string;
+    };
+  };
+  landingGif: {
+    responsiveImage: {
+      src: string;
+      base64: string;
+    };
+  };
+}
 
-  const { allProjects } = data;
+const Home = async () => {
+  const { data } = await peformRequest({ query: PROJECTS_QUERY });
+
+  const allProjects: IProject[] = data.allProjects;
 
   return <LandingPage allProjects={allProjects} />;
 };
