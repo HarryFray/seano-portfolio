@@ -39,16 +39,20 @@ const Project = async ({ params }: IProjectProps) => {
         src={project.projectVideo}
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
-        width={800}
+        width={1000}
         height={600}
       />
       <div className="w-96 flex justify-around">
-        <Link className="text-white" href={`${project.prevProject.slug}`}>
-          Prev
-        </Link>
-        <Link className="text-white" href={`${project.nextProject.slug}`}>
-          Next
-        </Link>
+        {project?.prevProject?.slug && (
+          <Link className="text-white" href={`${project.prevProject.slug}`}>
+            Prev
+          </Link>
+        )}
+        {project?.nextProject?.slug && (
+          <Link className="text-white" href={`${project.nextProject.slug}`}>
+            Next
+          </Link>
+        )}
       </div>
     </main>
   );
