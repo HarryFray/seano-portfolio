@@ -4,27 +4,61 @@ import Link from "next/link";
 import Image from "next/image";
 import { IProject } from "../page";
 import throttle from "lodash/throttle";
+import useScreenSize from "../lib/useWindowSizeHook";
 interface IProps {
   allProjects: IProject[];
 }
 
 const Home = ({ allProjects }: IProps) => {
-  const [currentProject, setCurrentProject] = useState(allProjects[0]);
-  const [prevProject, setPrevProject] = useState(allProjects[0]);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [prevProjectIndex, setPrevProjectIndex] = useState(0);
+
+  const currentProject = allProjects[currentProjectIndex];
+  const prevProject = allProjects[prevProjectIndex];
 
   const [showCurrentGif, setShowCurrentGif] = useState(false);
 
+  const screenSize = useScreenSize();
+  const isMobileSceenSize =
+    screenSize === "xs" || screenSize === "sm" || screenSize === "md";
+
   useEffect(() => {
+    if (!isMobileSceenSize) return;
+
+    const cycleProjects = () => {
+      const newIndex =
+        currentProjectIndex === allProjects.length - 1
+          ? 0
+          : currentProjectIndex + 1;
+      setCurrentProjectIndex(newIndex);
+      setPrevProjectIndex(currentProjectIndex);
+    };
+
+    if (isMobileSceenSize) {
+      const timer = setInterval(cycleProjects, 2000);
+
+      return () => {
+        clearInterval(timer);
+      };
+    }
+  }, [currentProjectIndex, isMobileSceenSize, allProjects.length]);
+
+  useEffect(() => {
+    if (isMobileSceenSize) {
+      setShowCurrentGif(true);
+      return;
+    }
+
     setShowCurrentGif(false);
     setTimeout(() => setShowCurrentGif(true), 300);
-  }, [currentProject]);
+  }, [currentProject, isMobileSceenSize]);
 
   const handleMouseEvent = throttle(
     (i: number, eventType: "LEAVE" | "ENTER") => {
       if (eventType === "ENTER") {
-        setCurrentProject(allProjects[i]);
+        setCurrentProjectIndex(i);
       } else {
-        setPrevProject(allProjects[i]);
+        setPrevProjectIndex(i);
       }
     },
     1000
@@ -35,11 +69,11 @@ const Home = ({ allProjects }: IProps) => {
   return (
     <main className="min-h-screen">
       <div
-        className="mx-10 flex flex-col items-center justify-center min-h-screen 
+        className="mx-8 flex flex-col items-center justify-center min-h-screen 
       lg:flex-row lg:justify-between lg:mx-40"
       >
         <div
-          className={`w-[${GIF_WIDTH}px] max-w-full flex flex-col mb-10
+          className={`w-[${String(GIF_WIDTH)}px] max-w-full flex flex-col mb-10
           lg:w-fit lg:m-0`}
         >
           {allProjects.map(({ title, slug, landingBackground, id }, i) => {
@@ -66,7 +100,9 @@ const Home = ({ allProjects }: IProps) => {
                 <Link
                   onMouseEnter={() => handleMouseEvent(i, "ENTER")}
                   onMouseLeave={() => handleMouseEvent(i, "LEAVE")}
-                  className="w-fit text-base font-semibold hover:line-through mb-1.5 text-white "
+                  className={`w-fit text-base font-semibold ${
+                    isMobileSceenSize && isCurrentProject && "line-through"
+                  } hover:line-through mb-1.5 text-white`}
                   href={slug}
                 >
                   {title}
@@ -75,16 +111,17 @@ const Home = ({ allProjects }: IProps) => {
             );
           })}
         </div>
-        {showCurrentGif && (
-          <Image
-            src={currentProject?.landingGif?.responsiveImage?.src}
-            alt={`${currentProject.title} gif`}
-            quality={100}
-            width={GIF_WIDTH}
-            height={GIF_WIDTH}
-            style={{ animation: "fadein 2.5s" }}
-          />
-        )}
+        <Image
+          src={currentProject?.landingGif?.responsiveImage?.src}
+          alt={`${currentProject.title} gif`}
+          quality={100}
+          width={GIF_WIDTH}
+          height={GIF_WIDTH}
+          style={{
+            animation: "fadein 2.5s",
+            display: showCurrentGif ? "block" : "none",
+          }}
+        />
       </div>
     </main>
   );
