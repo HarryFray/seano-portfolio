@@ -1,14 +1,31 @@
 import Link from "next/link";
 
-const Contact = () => {
+import peformRequest from "../lib/datocms";
+import { IProject } from "../page";
+import ImageLooper from "../components/imageLooper";
+
+const PROJECTS_QUERY = `{
+  allProjects {
+    id
+    title
+    landingGif {
+      responsiveImage {
+        base64
+        src
+      }
+    }
+  }
+}`;
+
+export type AllProjectGifs = Pick<IProject, "id" | "landingGif" | "title">;
+
+const Contact = async () => {
+  const { data } = await peformRequest({ query: PROJECTS_QUERY });
+
+  const allProjectGifs: AllProjectGifs[] = data.allProjects;
+
   return (
     <main className="min-h-screen p-40">
-      <Link
-        href="/"
-        className="text-4xl font-bold text-center hover:line-through text-white"
-      >
-        SEAN O’NEILL
-      </Link>
       <p className="mt-16 text-white">
         Somewhere between wonder and memory, lies the most complex vitality —
         that which makes us human. A system of light and sound, feeling and
@@ -22,31 +39,34 @@ const Contact = () => {
         of the incredible stories we all chase, and the places between where we
         land our feet.
       </p>
-      <div className="flex flex-col mt-20 text-white">
-        <Link
-          className="w-fit text-base font-semibold hover:line-through mb-1.5"
-          href="mailto:hi@SEANOfilms.com"
-        >
-          hi@SEANOfilms.com
-        </Link>
-        <Link
-          className="w-fit text-base font-semibold hover:line-through mb-1.5"
-          href="https://www.instagram.com/seanwithcamera"
-        >
-          @seanwithcamera
-        </Link>
-        <Link
-          className="w-fit text-base font-semibold hover:line-through mb-1.5"
-          href="tel:+17244959788"
-        >
-          724.495.9788
-        </Link>
-        <Link
-          className="w-fit text-base font-semibold hover:line-through mb-1.5"
-          href="https://vimeo.com/seanofilms"
-        >
-          VIMEO
-        </Link>
+      <div className="flex justify-between align-top mt-20">
+        <div className="flex flex-col text-white">
+          <Link
+            className="w-fit text-base font-semibold hover:line-through mb-1.5"
+            href="mailto:hi@SEANOfilms.com"
+          >
+            hi@SEANOfilms.com
+          </Link>
+          <Link
+            className="w-fit text-base font-semibold hover:line-through mb-1.5"
+            href="https://www.instagram.com/seanwithcamera"
+          >
+            @seanwithcamera
+          </Link>
+          <Link
+            className="w-fit text-base font-semibold hover:line-through mb-1.5"
+            href="tel:+17244959788"
+          >
+            724.495.9788
+          </Link>
+          <Link
+            className="w-fit text-base font-semibold hover:line-through mb-1.5"
+            href="https://vimeo.com/seanofilms"
+          >
+            VIMEO
+          </Link>
+        </div>
+        <ImageLooper allProjectGifs={allProjectGifs} />
       </div>
     </main>
   );
