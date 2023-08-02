@@ -25,8 +25,8 @@ const Contact = async () => {
   const allProjectGifs: AllProjectGifs[] = data.allProjects;
 
   return (
-    <main className="min-h-screen p-40">
-      <p className="mt-16 text-white">
+    <main className="min-h-screen p-10 lg:p-40">
+      <p className="mt-12 text-white">
         Somewhere between wonder and memory, lies the most complex vitality —
         that which makes us human. A system of light and sound, feeling and
         color. There’s an intersection found here, that collectively reminds us
@@ -39,7 +39,10 @@ const Contact = async () => {
         of the incredible stories we all chase, and the places between where we
         land our feet.
       </p>
-      <div className="flex justify-between align-top mt-20">
+      <div
+        className="flex flex-col mt-4 justify-between align-top 
+        lg:mt-20 lg:flex-row"
+      >
         <div className="flex flex-col text-white">
           <Link
             className="w-fit text-base font-semibold hover:line-through mb-1.5"
