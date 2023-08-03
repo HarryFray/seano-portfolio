@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import peformRequest from "../lib/datocms";
 import { IProject } from "../page";
 import ImageLooper from "../components/imageLooper";
@@ -44,30 +42,34 @@ const Contact = async () => {
         lg:mt-20 lg:flex-row"
       >
         <div className="flex flex-col text-white">
-          <Link
+          <a
             className="w-fit text-base font-semibold hover:line-through mb-1.5"
             href="mailto:hi@SEANOfilms.com"
           >
             hi@SEANOfilms.com
-          </Link>
-          <Link
+          </a>
+          <a
             className="w-fit text-base font-semibold hover:line-through mb-1.5"
             href="https://www.instagram.com/seanwithcamera"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             @seanwithcamera
-          </Link>
-          <Link
+          </a>
+          <a
             className="w-fit text-base font-semibold hover:line-through mb-1.5"
             href="tel:+17244959788"
           >
             724.495.9788
-          </Link>
-          <Link
+          </a>
+          <a
             className="w-fit text-base font-semibold hover:line-through mb-1.5"
             href="https://vimeo.com/seanofilms"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             VIMEO
-          </Link>
+          </a>
         </div>
         <ImageLooper allProjectGifs={allProjectGifs} />
       </div>
