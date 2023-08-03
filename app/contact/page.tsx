@@ -15,12 +15,12 @@ const PROJECTS_QUERY = `{
   }
 }`;
 
-export type AllProjectGifs = Pick<IProject, "id" | "landingGif" | "title">;
+export type AllProjectGifs = Pick<IProject, "id" | "landingGif" | "title">[];
 
 const Contact = async () => {
   const { data } = await peformRequest({ query: PROJECTS_QUERY });
 
-  const allProjectGifs: AllProjectGifs[] = data.allProjects;
+  const allProjectGifs: AllProjectGifs = data.allProjects;
 
   return (
     <main className="min-h-screen p-10 lg:p-40">

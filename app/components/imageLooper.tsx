@@ -5,7 +5,7 @@ import Image from "next/image";
 import { AllProjectGifs } from "../contact/page";
 
 interface IProps {
-  allProjectGifs: AllProjectGifs[];
+  allProjectGifs: AllProjectGifs;
 }
 
 const ImageLooper = ({ allProjectGifs }: IProps) => {

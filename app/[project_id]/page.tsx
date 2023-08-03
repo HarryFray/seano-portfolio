@@ -33,8 +33,8 @@ const Project = async ({ params }: IProjectProps) => {
   const project: IProject = data.project;
 
   return (
-    <main className="flex items-center flex-col min-h-screen p-40">
-      <h1 className="text-2xl text-white">{project.title}</h1>
+    <main className="flex items-center flex-col min-h-screen p-28">
+      <h1 className="text-2xl text-white mb-8">{project.title}</h1>
       <iframe
         src={project.projectVideo}
         allow="autoplay; fullscreen; picture-in-picture"
@@ -42,7 +42,7 @@ const Project = async ({ params }: IProjectProps) => {
         width={1000}
         height={600}
       />
-      <div className="w-96 flex justify-around">
+      <div className="w-96 flex justify-around mt-8">
         {project?.prevProject?.slug && (
           <Link className="text-white" href={`${project.prevProject.slug}`}>
             Prev
