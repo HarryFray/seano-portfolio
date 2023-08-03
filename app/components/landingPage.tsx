@@ -64,8 +64,6 @@ const Home = ({ allProjects }: IProps) => {
     1000
   );
 
-  const GIF_WIDTH = 500;
-
   return (
     <main className="min-h-screen">
       <div
@@ -73,7 +71,7 @@ const Home = ({ allProjects }: IProps) => {
       lg:flex-row lg:justify-between lg:mx-40"
       >
         <div
-          className={`w-[${String(GIF_WIDTH)}px] max-w-full flex flex-col mb-10
+          className={`w-[500px] max-w-full flex flex-col mb-10
           lg:w-fit lg:m-0`}
         >
           {allProjects.map(({ title, slug, landingBackground, id }, i) => {
@@ -115,8 +113,8 @@ const Home = ({ allProjects }: IProps) => {
           src={currentProject?.landingGif?.responsiveImage?.src}
           alt={`${currentProject.title} gif`}
           quality={100}
-          width={GIF_WIDTH}
-          height={GIF_WIDTH}
+          width={500}
+          height={500}
           style={{
             animation: "fadein 2.5s",
             display: showCurrentGif ? "block" : "none",
