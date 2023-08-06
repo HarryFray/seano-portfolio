@@ -116,13 +116,6 @@ const Home = ({ allProjects }: IProps) => {
           }}
         />
       </div>
-      {/* TODO: REMOVE TEST 123 IFRAME */}
-      <iframe
-        src="https://goggins-chat-iframe.vercel.app/"
-        title="Embedded Chat"
-        width="800"
-        height="600"
-      />
     </main>
   );
 };
