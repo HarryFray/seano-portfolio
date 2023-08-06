@@ -86,9 +86,9 @@ const Project = async ({ params }: IProjectProps) => {
         </div>
       </div>
       <h2 className="text-2xl text-white mt-8">{project.projectRole}</h2>
-      {/* <span className="text-white text-4xl cursor-pointer mt-16">
+      <span className="text-white text-4xl cursor-pointer mt-16">
         <FaChevronDown />
-      </span> */}
+      </span>
       <div className="flex flex-wrap mt-8">
         {project.projectImageGallery.map((image, index) => (
           <div key={index} className="w-1/4 p-2">

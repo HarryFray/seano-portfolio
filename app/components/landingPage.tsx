@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IProject } from "../page";
 import throttle from "lodash/throttle";
 import useScreenSize from "../lib/useWindowSizeHook";
+
 interface IProps {
   allProjects: IProject[];
 }
@@ -12,46 +13,14 @@ interface IProps {
 const Home = ({ allProjects }: IProps) => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [prevProjectIndex, setPrevProjectIndex] = useState(0);
-
-  const currentProject = allProjects[currentProjectIndex];
-  const prevProject = allProjects[prevProjectIndex];
-
   const [showCurrentGif, setShowCurrentGif] = useState(false);
 
   const screenSize = useScreenSize();
-  const isMobileSceenSize =
+  const isMobileScreenSize =
     screenSize === "xs" || screenSize === "sm" || screenSize === "md";
 
-  useEffect(() => {
-    if (!isMobileSceenSize) return;
-
-    const cycleProjects = () => {
-      const newIndex =
-        currentProjectIndex === allProjects.length - 1
-          ? 0
-          : currentProjectIndex + 1;
-      setCurrentProjectIndex(newIndex);
-      setPrevProjectIndex(currentProjectIndex);
-    };
-
-    if (isMobileSceenSize) {
-      const timer = setInterval(cycleProjects, 2000);
-
-      return () => {
-        clearInterval(timer);
-      };
-    }
-  }, [currentProjectIndex, isMobileSceenSize, allProjects.length]);
-
-  useEffect(() => {
-    if (isMobileSceenSize) {
-      setShowCurrentGif(true);
-      return;
-    }
-
-    setShowCurrentGif(false);
-    setTimeout(() => setShowCurrentGif(true), 300);
-  }, [currentProject, isMobileSceenSize]);
+  const currentProject = allProjects[currentProjectIndex];
+  const prevProject = allProjects[prevProjectIndex];
 
   const handleMouseEvent = throttle(
     (i: number, eventType: "LEAVE" | "ENTER") => {
@@ -64,15 +33,41 @@ const Home = ({ allProjects }: IProps) => {
     1000
   );
 
+  useEffect(() => {
+    if (!isMobileScreenSize) return;
+
+    const cycleProjects = () => {
+      const newIndex =
+        currentProjectIndex === allProjects.length - 1
+          ? 0
+          : currentProjectIndex + 1;
+      setCurrentProjectIndex(newIndex);
+      setPrevProjectIndex(currentProjectIndex);
+    };
+
+    if (isMobileScreenSize) {
+      const timer = setInterval(cycleProjects, 2000);
+
+      return () => {
+        clearInterval(timer);
+      };
+    }
+  }, [currentProjectIndex, isMobileScreenSize, allProjects.length]);
+
+  useEffect(() => {
+    if (isMobileScreenSize) {
+      setShowCurrentGif(true);
+    } else {
+      setShowCurrentGif(false);
+      setTimeout(() => setShowCurrentGif(true), 300);
+    }
+  }, [currentProject, isMobileScreenSize]);
+
   return (
     <main className="min-h-screen">
-      <div
-        className="mx-8 flex flex-col items-center justify-center min-h-screen 
-      lg:flex-row lg:justify-between lg:mx-40"
-      >
+      <div className="mx-8 flex flex-col items-center justify-center min-h-screen lg:flex-row lg:justify-between lg:mx-40">
         <div
-          className={`w-[500px] max-w-full flex flex-col mb-10
-          lg:w-fit lg:m-0`}
+          className={`w-[500px] max-w-full flex flex-col mb-10 lg:w-fit lg:m-0`}
         >
           {allProjects.map(({ title, slug, landingBackground, id }, i) => {
             const isCurrentProject = id === currentProject.id;
@@ -99,7 +94,7 @@ const Home = ({ allProjects }: IProps) => {
                   onMouseEnter={() => handleMouseEvent(i, "ENTER")}
                   onMouseLeave={() => handleMouseEvent(i, "LEAVE")}
                   className={`w-fit text-base font-semibold ${
-                    isMobileSceenSize && isCurrentProject && "line-through"
+                    isMobileScreenSize && isCurrentProject && "line-through"
                   } hover:line-through mb-1.5 text-white`}
                   href={slug}
                 >
