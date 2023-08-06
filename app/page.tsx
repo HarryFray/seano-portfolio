@@ -28,6 +28,7 @@ export interface IProject {
   projectVideo: string;
   prevProject: IProject;
   nextProject: IProject;
+  projectRole: string;
   landingBackground: {
     responsiveImage: {
       src: string;
