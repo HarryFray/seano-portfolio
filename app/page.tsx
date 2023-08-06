@@ -29,6 +29,11 @@ export interface IProject {
   prevProject: IProject;
   nextProject: IProject;
   projectRole: string;
+  projectImageGallery: {
+    responsiveImage: {
+      src: string;
+    };
+  }[];
   landingBackground: {
     responsiveImage: {
       src: string;
