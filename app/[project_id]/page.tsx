@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaChevronLeft, FaChevronRight, FaChevronDown } from "react-icons/fa";
 
 import { IProject } from "../page";
+import ProjectGallery from "../components/projectGallery";
 
 const PROJECT_QUERY = (slug: string) => `
   query {
@@ -86,22 +87,9 @@ const Project = async ({ params }: IProjectProps) => {
         </div>
       </div>
       <h2 className="text-2xl text-white mt-8">{project.projectRole}</h2>
-      <span className="text-white text-4xl cursor-pointer mt-16">
-        <FaChevronDown />
-      </span>
-      <div className="flex flex-wrap mt-8">
-        {project.projectImageGallery.map((image, index) => (
-          <div key={index} className="w-1/4 p-2">
-            <Image
-              src={image?.responsiveImage?.src}
-              layout="responsive"
-              width={1200}
-              height={800}
-              alt={`Gallery Image ${index + 1}`}
-            />
-          </div>
-        ))}
-      </div>
+      {project?.projectImageGallery?.length > 0 && (
+        <ProjectGallery galleryImages={project.projectImageGallery} />
+      )}
     </main>
   );
 };
