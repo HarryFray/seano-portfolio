@@ -11,10 +11,10 @@ interface IProjectGalleryProps {
 
 const ProjectGallery = ({ galleryImages }: IProjectGalleryProps) => {
   const [showArrow, setShowArrow] = useState(true);
-  const galleryRef = useRef(null);
+  const galleryRef = useRef<null | HTMLDivElement>(null);
 
   const handleArrowClick = () => {
-    galleryRef?.current!.scrollIntoView({ behavior: "smooth" });
+    galleryRef?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleScroll = () => {
