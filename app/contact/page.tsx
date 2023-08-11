@@ -1,27 +1,4 @@
-import peformRequest from "../lib/datocms";
-import { IProject } from "../page";
-// import ImageLooper from "../components/imageLooper";
-
-const PROJECTS_QUERY = `{
-  allProjects {
-    id
-    title
-    landingGif {
-      responsiveImage {
-        base64
-        src
-      }
-    }
-  }
-}`;
-
-export type AllProjectGifs = Pick<IProject, "id" | "landingGif" | "title">[];
-
-const Contact = async () => {
-  const { data } = await peformRequest({ query: PROJECTS_QUERY });
-
-  const allProjectGifs: AllProjectGifs = data.allProjects;
-
+const Contact = () => {
   return (
     <main className="min-h-screen p-10 lg:p-40">
       <p className="mt-12 text-white">
