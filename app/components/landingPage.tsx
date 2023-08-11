@@ -6,26 +6,30 @@ import { IProject } from "../page";
 import throttle from "lodash/throttle";
 import useScreenSize from "../lib/useWindowSizeHook";
 
+import { useAppStore } from "../lib/globalStore";
+
 interface IProps {
   allProjects: IProject[];
 }
 
 const Home = ({ allProjects }: IProps) => {
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [prevProjectIndex, setPrevProjectIndex] = useState(0);
   const [showCurrentGif, setShowCurrentGif] = useState(false);
+
+  const { setCurrentBackground, currentBackground } = useAppStore();
 
   const screenSize = useScreenSize();
   const isMobileScreenSize =
     screenSize === "xs" || screenSize === "sm" || screenSize === "md";
 
-  const currentProject = allProjects[currentProjectIndex];
+  const currentProject = allProjects[currentBackground];
   const prevProject = allProjects[prevProjectIndex];
 
   const handleMouseEvent = throttle(
     (i: number, eventType: "LEAVE" | "ENTER") => {
       if (eventType === "ENTER") {
-        setCurrentProjectIndex(i);
+        setCurrentBackground(i);
+        setCurrentBackground(i);
       } else {
         setPrevProjectIndex(i);
       }
@@ -38,11 +42,11 @@ const Home = ({ allProjects }: IProps) => {
 
     const cycleProjects = () => {
       const newIndex =
-        currentProjectIndex === allProjects.length - 1
+        currentBackground === allProjects.length - 1
           ? 0
-          : currentProjectIndex + 1;
-      setCurrentProjectIndex(newIndex);
-      setPrevProjectIndex(currentProjectIndex);
+          : currentBackground + 1;
+      setCurrentBackground(newIndex);
+      setPrevProjectIndex(currentBackground);
     };
 
     if (isMobileScreenSize) {
@@ -52,7 +56,7 @@ const Home = ({ allProjects }: IProps) => {
         clearInterval(timer);
       };
     }
-  }, [currentProjectIndex, isMobileScreenSize, allProjects.length]);
+  }, [currentBackground, isMobileScreenSize, allProjects.length]);
 
   useEffect(() => {
     if (isMobileScreenSize) {
