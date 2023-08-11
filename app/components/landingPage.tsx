@@ -5,58 +5,48 @@ import Image from "next/image";
 import { IProject } from "../page";
 import throttle from "lodash/throttle";
 import useScreenSize from "../lib/useWindowSizeHook";
-
 import { useAppStore } from "../lib/globalStore";
 
 interface IProps {
   allProjects: IProject[];
 }
 
-const Home = ({ allProjects }: IProps) => {
-  const [prevProjectIndex, setPrevProjectIndex] = useState(0);
+const LandingPage = ({ allProjects }: IProps) => {
   const [showCurrentGif, setShowCurrentGif] = useState(false);
 
-  const { setCurrentBackground, currentBackground } = useAppStore();
+  const {
+    curSelectedProject,
+    setCurSelectedProject,
+    prevSelectedProject,
+    setPrevSelectedProject,
+  } = useAppStore();
 
   const screenSize = useScreenSize();
   const isMobileScreenSize =
     screenSize === "xs" || screenSize === "sm" || screenSize === "md";
 
-  const currentProject = allProjects[currentBackground];
-  const prevProject = allProjects[prevProjectIndex];
-
   const handleMouseEvent = throttle(
-    (i: number, eventType: "LEAVE" | "ENTER") => {
+    (project: IProject, eventType: "LEAVE" | "ENTER") => {
       if (eventType === "ENTER") {
-        setCurrentBackground(i);
-        setCurrentBackground(i);
+        setCurSelectedProject(project);
+        setCurSelectedProject(project);
       } else {
-        setPrevProjectIndex(i);
+        setPrevSelectedProject(project);
       }
     },
     1000
   );
 
   useEffect(() => {
-    if (!isMobileScreenSize) return;
-
-    const cycleProjects = () => {
-      const newIndex =
-        currentBackground === allProjects.length - 1
-          ? 0
-          : currentBackground + 1;
-      setCurrentBackground(newIndex);
-      setPrevProjectIndex(currentBackground);
-    };
-
-    if (isMobileScreenSize) {
-      const timer = setInterval(cycleProjects, 2000);
-
-      return () => {
-        clearInterval(timer);
-      };
+    if (!curSelectedProject.id) {
+      setCurSelectedProject(allProjects[0]);
     }
-  }, [currentBackground, isMobileScreenSize, allProjects.length]);
+  }, [
+    curSelectedProject,
+    allProjects,
+    setCurSelectedProject,
+    setPrevSelectedProject,
+  ]);
 
   useEffect(() => {
     if (isMobileScreenSize) {
@@ -65,7 +55,7 @@ const Home = ({ allProjects }: IProps) => {
       setShowCurrentGif(false);
       setTimeout(() => setShowCurrentGif(true), 300);
     }
-  }, [currentProject, isMobileScreenSize]);
+  }, [curSelectedProject, isMobileScreenSize]);
 
   return (
     <main className="min-h-screen">
@@ -73,20 +63,24 @@ const Home = ({ allProjects }: IProps) => {
         <div
           className={`w-[500px] max-w-full flex flex-col mb-10 lg:w-fit lg:m-0`}
         >
-          {allProjects.map(({ title, slug, landingBackground, id }, i) => {
-            const isCurrentProject = id === currentProject.id;
-            const isPrevProject = id === prevProject.id;
+          {allProjects.map((project, i) => {
+            const { title, slug, landingBackground, id } = project;
+
+            const isCurSelectedProject = id === curSelectedProject.id;
+            const isprevSelectedProject = id === prevSelectedProject.id;
 
             return (
               <Fragment key={`${slug}${i}`}>
                 <Image
                   style={{
-                    zIndex: isCurrentProject ? -1 : -2,
-                    animation: isCurrentProject
+                    zIndex: isCurSelectedProject ? -1 : -2,
+                    animation: isCurSelectedProject
                       ? "fadeinbackgroundimg 1s"
                       : "fadeoutbackgroundimg 1s",
                     display:
-                      !isCurrentProject && !isPrevProject ? "none" : "block",
+                      !isCurSelectedProject && !isprevSelectedProject
+                        ? "none"
+                        : "block",
                   }}
                   src={landingBackground?.responsiveImage?.src}
                   layout="fill"
@@ -95,10 +89,13 @@ const Home = ({ allProjects }: IProps) => {
                   alt={`${title} background image`}
                 />
                 <Link
-                  onMouseEnter={() => handleMouseEvent(i, "ENTER")}
-                  onMouseLeave={() => handleMouseEvent(i, "LEAVE")}
+                  onMouseEnter={() => handleMouseEvent(project, "ENTER")}
+                  onMouseLeave={() => handleMouseEvent(project, "LEAVE")}
+                  onClick={() => {
+                    setPrevSelectedProject({} as IProject);
+                  }}
                   className={`w-fit text-base font-semibold ${
-                    isMobileScreenSize && isCurrentProject && "line-through"
+                    isMobileScreenSize && isCurSelectedProject && "line-through"
                   } hover:line-through mb-1.5 text-white`}
                   href={slug}
                 >
@@ -109,8 +106,8 @@ const Home = ({ allProjects }: IProps) => {
           })}
         </div>
         <Image
-          src={currentProject?.landingGif?.responsiveImage?.src}
-          alt={`${currentProject.title} gif`}
+          src={curSelectedProject?.landingGif?.responsiveImage?.src}
+          alt={`${curSelectedProject.title} gif`}
           quality={100}
           width={500}
           height={500}
@@ -124,4 +121,4 @@ const Home = ({ allProjects }: IProps) => {
   );
 };
 
-export default Home;
+export default LandingPage;

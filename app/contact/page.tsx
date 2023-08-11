@@ -1,6 +1,6 @@
 import peformRequest from "../lib/datocms";
 import { IProject } from "../page";
-import ImageLooper from "../components/imageLooper";
+// import ImageLooper from "../components/imageLooper";
 
 const PROJECTS_QUERY = `{
   allProjects {
@@ -71,7 +71,7 @@ const Contact = async () => {
             VIMEO
           </a>
         </div>
-        <ImageLooper allProjectGifs={allProjectGifs} />
+        {/* <ImageLooper allProjectGifs={allProjectGifs} /> */}
       </div>
     </main>
   );

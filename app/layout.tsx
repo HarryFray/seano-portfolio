@@ -1,20 +1,24 @@
+"use client";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import { useAppStore } from "./lib/globalStore";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "SeanO Portfolio",
-  description: "SeanO Portfolio Site",
-};
+// export const metadata: Metadata = {
+//   title: "SeanO Portfolio",
+//   description: "SeanO Portfolio Site",
+// };
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { curSelectedProject, prevSelectedProject } = useAppStore();
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -36,6 +40,15 @@ export default function RootLayout({
             Contact
           </Link>
         </header>
+        <div
+          className="fixed inset-0 z-[-2]"
+          style={{
+            backgroundImage: `url(${curSelectedProject?.landingBackground?.responsiveImage?.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.7,
+          }}
+        />
         {children}
       </body>
     </html>
