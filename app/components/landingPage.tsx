@@ -13,7 +13,12 @@ interface IProps {
 const LandingPage = ({ allProjects }: IProps) => {
   const [showCurrentGif, setShowCurrentGif] = useState(false);
 
-  const { curSelectedProject, setCurSelectedProject } = useAppStore();
+  const { curSelectedProject, setCurSelectedProject, setAllProjects } =
+    useAppStore();
+
+  useEffect(() => {
+    setAllProjects(allProjects);
+  }, [allProjects, setAllProjects]);
 
   const screenSize = useScreenSize();
   const isMobileScreenSize =

@@ -6,7 +6,8 @@ import LandingFadeOut from "./components/landingFadeOut";
 import Image from "next/image";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  const { curSelectedProject, prevSelectedProject } = useAppStore();
+  const { curSelectedProject, prevSelectedProject, allProjects } =
+    useAppStore();
 
   return (
     <html lang="en">
