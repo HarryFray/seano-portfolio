@@ -29,16 +29,39 @@ export interface IProject {
 
 export interface GlobalState {
   curSelectedProject: IProject;
-  setCurSelectedProject: (product: IProject) => void;
   prevSelectedProject: IProject;
-  setPrevSelectedProject: (product: IProject) => void;
+  allProjects: IProject[];
+  globalLoading: boolean;
+  setCurSelectedProject: (product: IProject) => void;
+  setAllProjects: (projects: IProject[]) => void;
+  setGlobalLoading: (loading: boolean) => void;
 }
 
-export const createGlobalState: StateCreator<GlobalState> = (set) => ({
+const initialState = {
   curSelectedProject: {} as IProject,
-  setCurSelectedProject: (project) => set({ curSelectedProject: project }),
   prevSelectedProject: {} as IProject,
-  setPrevSelectedProject: (project) => set({ prevSelectedProject: project }),
+  allProjects: [] as IProject[],
+  globalLoading: true,
+};
+
+export const createGlobalState: StateCreator<GlobalState> = (set) => ({
+  ...initialState,
+  setCurSelectedProject: (project) => {
+    return set((state) => ({
+      prevSelectedProject: state.curSelectedProject,
+      curSelectedProject: project,
+    }));
+  },
+  setAllProjects: (projects: IProject[]) => {
+    return set(() => ({
+      allProjects: projects,
+    }));
+  },
+  setGlobalLoading: (loading: boolean) => {
+    return set(() => ({
+      globalLoading: loading,
+    }));
+  },
 });
 
 export const useAppStore = create<GlobalState>()((...a) => ({

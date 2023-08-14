@@ -8,14 +8,16 @@ import { useAppStore } from "../global/globalStore";
 
 interface IProjectProps {
   project: IProject;
+  allProjects: IProject[];
 }
 
-const ProjectPage = ({ project }: IProjectProps) => {
-  const { setCurSelectedProject } = useAppStore();
+const ProjectPage = ({ project, allProjects }: IProjectProps) => {
+  const { setCurSelectedProject, setAllProjects } = useAppStore();
 
   useEffect(() => {
     setCurSelectedProject(project);
-  }, [project, setCurSelectedProject]);
+    setAllProjects(allProjects);
+  }, [project, setCurSelectedProject, allProjects, setAllProjects]);
 
   return (
     <main className="relative p-28">
