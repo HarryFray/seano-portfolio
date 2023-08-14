@@ -3,9 +3,10 @@ import "./globals.css";
 import Link from "next/link";
 import { useAppStore } from "./global/globalStore";
 import LandingFadeOut from "./components/landingFadeOut";
+import Image from "next/image";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  const { curSelectedProject } = useAppStore();
+  const { curSelectedProject, prevSelectedProject } = useAppStore();
 
   return (
     <html lang="en">
@@ -32,13 +33,29 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           </Link>
         </div>
         <LandingFadeOut />
-        <div
-          className="fixed inset-0 z-[-2]"
+        <Image
           style={{
-            backgroundImage: `url(${curSelectedProject?.landingBackground?.responsiveImage?.src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            inset: 0,
+            zIndex: -1,
+            animation: "fadeinbackgroundimg 1s",
           }}
+          src={curSelectedProject?.landingBackground?.responsiveImage?.src}
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          alt={`${curSelectedProject?.title} background image`}
+        />
+        <Image
+          style={{
+            inset: 0,
+            zIndex: -2,
+            animation: "fadeoutbackgroundimg 1s",
+          }}
+          src={prevSelectedProject?.landingBackground?.responsiveImage?.src}
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          alt={`${prevSelectedProject?.title} background image`}
         />
         {children}
       </body>

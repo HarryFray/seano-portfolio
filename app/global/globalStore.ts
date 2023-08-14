@@ -31,14 +31,17 @@ export interface GlobalState {
   curSelectedProject: IProject;
   setCurSelectedProject: (product: IProject) => void;
   prevSelectedProject: IProject;
-  setPrevSelectedProject: (product: IProject) => void;
 }
 
 export const createGlobalState: StateCreator<GlobalState> = (set) => ({
   curSelectedProject: {} as IProject,
-  setCurSelectedProject: (project) => set({ curSelectedProject: project }),
+  setCurSelectedProject: (project) => {
+    return set((state) => ({
+      prevSelectedProject: state.curSelectedProject,
+      curSelectedProject: project,
+    }));
+  },
   prevSelectedProject: {} as IProject,
-  setPrevSelectedProject: (project) => set({ prevSelectedProject: project }),
 });
 
 export const useAppStore = create<GlobalState>()((...a) => ({
