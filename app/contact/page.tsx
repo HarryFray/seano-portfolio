@@ -1,4 +1,28 @@
 const Contact = () => {
+  interface IsocialLinke {
+    text: string;
+    href: string;
+  }
+
+  const socialLinks: IsocialLinke[] = [
+    {
+      text: "hi@SEANOfilms.com",
+      href: "mailto:hi@SEANOfilms.com",
+    },
+    {
+      text: "@seanwithcamera",
+      href: "https://www.instagram.com/seanwithcamera",
+    },
+    {
+      text: "724.495.9788",
+      href: "tel:+17244959788",
+    },
+    {
+      text: "VIMEO",
+      href: "https://vimeo.com/seanofilms",
+    },
+  ];
+
   return (
     <main className="min-h-screen p-10 lg:p-40">
       <p className="mt-12 text-white">
@@ -19,36 +43,18 @@ const Contact = () => {
         lg:mt-20 lg:flex-row"
       >
         <div className="flex flex-col text-white">
-          <a
-            className="w-fit text-base font-semibold hover:line-through mb-1.5"
-            href="mailto:hi@SEANOfilms.com"
-          >
-            hi@SEANOfilms.com
-          </a>
-          <a
-            className="w-fit text-base font-semibold hover:line-through mb-1.5"
-            href="https://www.instagram.com/seanwithcamera"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @seanwithcamera
-          </a>
-          <a
-            className="w-fit text-base font-semibold hover:line-through mb-1.5"
-            href="tel:+17244959788"
-          >
-            724.495.9788
-          </a>
-          <a
-            className="w-fit text-base font-semibold hover:line-through mb-1.5"
-            href="https://vimeo.com/seanofilms"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            VIMEO
-          </a>
+          {socialLinks.map(({ text, href }, index) => (
+            <a
+              key={index}
+              className="w-fit text-base font-semibold hover:line-through mb-1.5"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {text}
+            </a>
+          ))}
         </div>
-        {/* <ImageLooper allProjectGifs={allProjectGifs} /> */}
       </div>
     </main>
   );

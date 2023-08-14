@@ -2,8 +2,7 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa";
-
-import { IProject } from "../page";
+import { IProject } from "../global/globalStore";
 
 interface IProjectGalleryProps {
   galleryImages: IProject["projectImageGallery"];

@@ -1,4 +1,4 @@
-import peformRequest from "../lib/datocms";
+import peformRequest from "../global/datocms";
 import { IProject } from "../page";
 import ProjectPage from "../components/projectPage";
 

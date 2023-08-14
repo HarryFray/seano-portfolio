@@ -1,11 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { FaChevronLeft, FaChevronRight, FaChevronDown } from "react-icons/fa";
-
-import { IProject } from "../page";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { IProject } from "../global/globalStore";
 import ProjectGallery from "../components/projectGallery";
-import { useAppStore } from "../lib/globalStore";
+import { useAppStore } from "../global/globalStore";
 
 interface IProjectProps {
   project: IProject;
@@ -21,7 +20,7 @@ const ProjectPage = ({ project }: IProjectProps) => {
   return (
     <main className="relative p-28">
       <div className="flex flex-col items-center">
-        <h1 className="text-3xl text-white mb-8">{project.title}</h1>
+        <h1 className="text-3xl text-white mb-8">{project?.title}</h1>
         <div className="relative flex items-center">
           <div className="absolute -left-16">
             {project?.prevProject?.slug && (

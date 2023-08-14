@@ -2,9 +2,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { IProject } from "../page";
-import useScreenSize from "../lib/useWindowSizeHook";
-import { useAppStore } from "../lib/globalStore";
+import { IProject } from "../global/globalStore";
+import useScreenSize from "../hooks/useWindowSizeHook";
+import { useAppStore } from "../global/globalStore";
 
 interface IProps {
   allProjects: IProject[];

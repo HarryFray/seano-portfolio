@@ -2,7 +2,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import { useAppStore } from "./lib/globalStore";
+import { useAppStore } from "./global/globalStore";
 
 const inter = Inter({ subsets: ["latin"] });
 
