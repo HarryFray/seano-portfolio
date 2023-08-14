@@ -2,6 +2,26 @@ import peformRequest from "../global/datocms";
 import { IProject } from "../global/globalStore";
 import ProjectPage from "../components/projectPage";
 
+const PROJECTS_QUERY = `{
+  allProjects {
+    id
+    title
+    slug
+    landingBackground {
+      responsiveImage {
+        base64
+        src
+      }
+    }
+    landingGif {
+      responsiveImage {
+        base64
+        src
+      }
+    }
+  }
+}`;
+
 const PROJECT_QUERY = (slug: string) => `
   query {
     project(filter: { slug: { eq: "${slug}" } }) {
@@ -43,13 +63,19 @@ interface IProjectProps {
 }
 
 const Project = async ({ params }: IProjectProps) => {
-  const { data } = await peformRequest({
+  const { data: projectData } = await peformRequest({
     query: PROJECT_QUERY(params.project_id),
   });
 
-  const project: IProject = data.project;
+  const { data: allProjectsData } = await peformRequest({
+    query: PROJECTS_QUERY,
+  });
 
-  return <ProjectPage project={project} />;
+  const allProjects: IProject[] = allProjectsData.allProjects;
+
+  const project: IProject = projectData.project;
+
+  return <ProjectPage project={project} allProjects={allProjects} />;
 };
 
 export default Project;
