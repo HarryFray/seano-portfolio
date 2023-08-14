@@ -1,23 +1,17 @@
 "use client";
 import "./globals.css";
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import { useAppStore } from "./lib/globalStore";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata: Metadata = {
-//   title: "SeanO Portfolio",
-//   description: "SeanO Portfolio Site",
-// };
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { curSelectedProject, prevSelectedProject } = useAppStore();
+  const { curSelectedProject } = useAppStore();
 
   return (
     <html lang="en">

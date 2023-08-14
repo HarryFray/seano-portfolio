@@ -3,7 +3,6 @@ import React, { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { IProject } from "../page";
-import throttle from "lodash/throttle";
 import useScreenSize from "../lib/useWindowSizeHook";
 import { useAppStore } from "../lib/globalStore";
 
@@ -25,17 +24,17 @@ const LandingPage = ({ allProjects }: IProps) => {
   const isMobileScreenSize =
     screenSize === "xs" || screenSize === "sm" || screenSize === "md";
 
-  const handleMouseEvent = throttle(
-    (project: IProject, eventType: "LEAVE" | "ENTER") => {
-      if (eventType === "ENTER") {
-        setCurSelectedProject(project);
-        setCurSelectedProject(project);
-      } else {
-        setPrevSelectedProject(project);
-      }
-    },
-    1000
-  );
+  const handleMouseEvent = (
+    project: IProject,
+    eventType: "LEAVE" | "ENTER"
+  ) => {
+    if (eventType === "ENTER") {
+      setCurSelectedProject(project);
+      setCurSelectedProject(project);
+    } else {
+      setPrevSelectedProject(project);
+    }
+  };
 
   useEffect(() => {
     if (!curSelectedProject.id) {
@@ -73,6 +72,7 @@ const LandingPage = ({ allProjects }: IProps) => {
               <Fragment key={`${slug}${i}`}>
                 <Image
                   style={{
+                    inset: 0,
                     zIndex: isCurSelectedProject ? -1 : -2,
                     animation: isCurSelectedProject
                       ? "fadeinbackgroundimg 1s"
