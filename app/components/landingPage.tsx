@@ -105,17 +105,19 @@ const LandingPage = ({ allProjects }: IProps) => {
             );
           })}
         </div>
-        <Image
-          src={curSelectedProject?.landingGif?.responsiveImage?.src}
-          alt={`${curSelectedProject.title} gif`}
-          quality={100}
-          width={500}
-          height={500}
-          style={{
-            animation: "fadein 2.5s",
-            display: showCurrentGif ? "block" : "none",
-          }}
-        />
+        {curSelectedProject?.id && (
+          <Image
+            src={curSelectedProject?.landingGif?.responsiveImage?.src}
+            alt={`${curSelectedProject.title} gif`}
+            quality={100}
+            width={500}
+            height={500}
+            style={{
+              animation: "fadein 2.5s",
+              display: showCurrentGif ? "block" : "none",
+            }}
+          />
+        )}
       </div>
     </main>
   );
