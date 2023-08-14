@@ -1,4 +1,5 @@
 "use client";
+import { Fragment } from "react";
 import "./globals.css";
 import Link from "next/link";
 import { useAppStore } from "./global/globalStore";
@@ -34,30 +35,35 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           </Link>
         </div>
         <LandingFadeOut />
-        <Image
-          style={{
-            inset: 0,
-            zIndex: -1,
-            animation: "fadeinbackgroundimg 1s",
-          }}
-          src={curSelectedProject?.landingBackground?.responsiveImage?.src}
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          alt={`${curSelectedProject?.title} background image`}
-        />
-        <Image
-          style={{
-            inset: 0,
-            zIndex: -2,
-            animation: "fadeoutbackgroundimg 1s",
-          }}
-          src={prevSelectedProject?.landingBackground?.responsiveImage?.src}
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          alt={`${prevSelectedProject?.title} background image`}
-        />
+        {allProjects.map((project, i) => {
+          const { title, slug, landingBackground, id } = project;
+
+          const isCurSelectedProject = id === curSelectedProject.id;
+          const isprevSelectedProject = id === prevSelectedProject.id;
+
+          return (
+            <Fragment key={`${slug}${i}`}>
+              <Image
+                style={{
+                  inset: 0,
+                  zIndex: isCurSelectedProject ? -1 : -2,
+                  animation: isCurSelectedProject
+                    ? "fadeinbackgroundimg 1s"
+                    : "fadeoutbackgroundimg 1s",
+                  display:
+                    !isCurSelectedProject && !isprevSelectedProject
+                      ? "none"
+                      : "block",
+                }}
+                src={landingBackground?.responsiveImage?.src}
+                layout="fill"
+                objectFit="cover"
+                quality={100}
+                alt={`${title} background image`}
+              />
+            </Fragment>
+          );
+        })}
         {children}
       </body>
     </html>

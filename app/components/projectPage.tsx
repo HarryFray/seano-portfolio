@@ -11,11 +11,14 @@ interface IProjectProps {
 }
 
 const ProjectPage = ({ project }: IProjectProps) => {
-  const { setCurSelectedProject } = useAppStore();
+  const { setCurSelectedProject, allProjects, setAllProjects } = useAppStore();
 
   useEffect(() => {
     setCurSelectedProject(project);
-  }, [project, setCurSelectedProject]);
+    if (allProjects.length === 0) {
+      setAllProjects([project]);
+    }
+  }, [project, setCurSelectedProject, allProjects, setAllProjects]);
 
   return (
     <main className="relative p-28">

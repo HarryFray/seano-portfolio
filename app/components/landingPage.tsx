@@ -18,7 +18,10 @@ const LandingPage = ({ allProjects }: IProps) => {
 
   useEffect(() => {
     setAllProjects(allProjects);
-  }, [allProjects, setAllProjects]);
+    if (!curSelectedProject.id) {
+      setCurSelectedProject(allProjects[0]);
+    }
+  }, [allProjects, setAllProjects, setCurSelectedProject, curSelectedProject]);
 
   const screenSize = useScreenSize();
   const isMobileScreenSize =
