@@ -38,7 +38,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             backgroundImage: `url(${curSelectedProject?.landingBackground?.responsiveImage?.src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            opacity: 0.7,
           }}
         />
         {children}
