@@ -24,7 +24,7 @@ const ProjectPage = ({ project }: IProjectProps) => {
         <div className="relative flex items-center">
           <div className="absolute -left-16">
             {project?.prevProject?.slug && (
-              <Link href={`${project.prevProject.slug}`}>
+              <Link href={`${project?.prevProject.slug}`}>
                 <span className="text-white text-4xl cursor-pointer">
                   <FaChevronLeft />
                 </span>
@@ -32,7 +32,7 @@ const ProjectPage = ({ project }: IProjectProps) => {
             )}
           </div>
           <iframe
-            src={project.projectVideo}
+            src={project?.projectVideo}
             allow="autoplay; fullscreen; picture-in-picture"
             style={{ animation: "fadein 1s" }}
             allowFullScreen
@@ -41,7 +41,7 @@ const ProjectPage = ({ project }: IProjectProps) => {
           />
           <div className="absolute -right-16">
             {project?.nextProject?.slug && (
-              <Link href={`${project.nextProject.slug}`}>
+              <Link href={`${project?.nextProject.slug}`}>
                 <span className="text-white text-4xl cursor-pointer">
                   <FaChevronRight />
                 </span>
@@ -49,10 +49,10 @@ const ProjectPage = ({ project }: IProjectProps) => {
             )}
           </div>
         </div>
-        <h2 className="text-2xl text-white mt-8">{project.projectRole}</h2>
+        <h2 className="text-2xl text-white mt-8">{project?.projectRole}</h2>
       </div>
       {project?.projectImageGallery?.length > 0 && (
-        <ProjectGallery galleryImages={project.projectImageGallery} />
+        <ProjectGallery galleryImages={project?.projectImageGallery} />
       )}
     </main>
   );
