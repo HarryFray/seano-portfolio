@@ -1,5 +1,5 @@
 import peformRequest from "../global/datocms";
-import { IProject } from "../page";
+import { IProject } from "../global/globalStore";
 import ProjectPage from "../components/projectPage";
 
 const PROJECT_QUERY = (slug: string) => `
