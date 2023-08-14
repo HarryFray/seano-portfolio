@@ -1,11 +1,14 @@
 "use client";
+import { Fragment } from "react";
 import "./globals.css";
 import Link from "next/link";
 import { useAppStore } from "./global/globalStore";
 import LandingFadeOut from "./components/landingFadeOut";
+import Image from "next/image";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  const { curSelectedProject } = useAppStore();
+  const { curSelectedProject, prevSelectedProject, allProjects } =
+    useAppStore();
 
   return (
     <html lang="en">
@@ -32,14 +35,35 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           </Link>
         </div>
         <LandingFadeOut />
-        <div
-          className="fixed inset-0 z-[-2]"
-          style={{
-            backgroundImage: `url(${curSelectedProject?.landingBackground?.responsiveImage?.src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
+        {allProjects.map((project, i) => {
+          const { title, slug, landingBackground, id } = project;
+
+          const isCurSelectedProject = id === curSelectedProject.id;
+          const isprevSelectedProject = id === prevSelectedProject.id;
+
+          return (
+            <Fragment key={`${slug}${i}`}>
+              <Image
+                style={{
+                  inset: 0,
+                  zIndex: isCurSelectedProject ? -1 : -2,
+                  animation: isCurSelectedProject
+                    ? "fadeinbackgroundimg 1s"
+                    : "fadeoutbackgroundimg 1s",
+                  display:
+                    !isCurSelectedProject && !isprevSelectedProject
+                      ? "none"
+                      : "block",
+                }}
+                src={landingBackground?.responsiveImage?.src}
+                layout="fill"
+                objectFit="cover"
+                quality={100}
+                alt={`${title} background image`}
+              />
+            </Fragment>
+          );
+        })}
         {children}
       </body>
     </html>
