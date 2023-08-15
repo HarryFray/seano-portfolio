@@ -16,12 +16,6 @@ const ProjectGallery = ({ galleryImages }: projectGalleryProps) => {
 
   const screenSize = useScreenSize();
 
-  useEffect(() => {
-    if (screenSize === "xs" || screenSize === "sm") {
-      setShowArrow(false);
-    }
-  }, [screenSize]);
-
   const handleDownArrowClick = () => {
     galleryRef?.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -35,11 +29,9 @@ const ProjectGallery = ({ galleryImages }: projectGalleryProps) => {
 
   return (
     <div className="flex flex-col items-center" ref={galleryRef}>
-      {showArrow && (
-        <span className="text-white lg:text-4xl  cursor-pointer mt-16 h-20">
-          <FaChevronDown onClick={handleDownArrowClick} />
-        </span>
-      )}
+      <span className="text-white mt-4 h-8 lg:text-4xl  cursor-pointer lg:mt-16 md:h-20">
+        {showArrow && <FaChevronDown onClick={handleDownArrowClick} />}
+      </span>
       <div className="flex flex-wrap mt-8 mx-auto items-center justify-center">
         {galleryImages.map(({ responsiveImage }, i) => (
           <Image
