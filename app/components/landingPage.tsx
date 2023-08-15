@@ -52,7 +52,7 @@ const LandingPage = ({ allProjects }: IProps) => {
                 <Link
                   onMouseEnter={() => setCurSelectedProject(project)}
                   className={`w-fit text-base font-semibold ${
-                    isMobileScreenSize && isCurSelectedProject && "line-through"
+                    isCurSelectedProject && "line-through"
                   } hover:line-through mb-1.5 text-white`}
                   href={slug}
                 >
