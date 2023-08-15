@@ -44,26 +44,29 @@ const RootLayout = ({ children }: rootLayoutProps) => {
           const isprevSelectedProject = id === prevSelectedProject.id;
 
           return (
-            <Fragment key={`${slug}${id}`}>
+            <div
+              className="fixed"
+              key={`${slug}${id}`}
+              style={{
+                inset: 0,
+                zIndex: isCurSelectedProject ? -1 : -2,
+                animation: isCurSelectedProject
+                  ? "fadeinbackgroundimg 1s"
+                  : "fadeoutbackgroundimg 1s",
+                display:
+                  !isCurSelectedProject && !isprevSelectedProject
+                    ? "none"
+                    : "block",
+              }}
+            >
               <Image
-                style={{
-                  inset: 0,
-                  zIndex: isCurSelectedProject ? -1 : -2,
-                  animation: isCurSelectedProject
-                    ? "fadeinbackgroundimg 1s"
-                    : "fadeoutbackgroundimg 1s",
-                  display:
-                    !isCurSelectedProject && !isprevSelectedProject
-                      ? "none"
-                      : "block",
-                }}
                 src={landingBackground?.responsiveImage?.src}
-                layout="fill"
+                fill
                 objectFit="cover"
                 quality={100}
                 alt={`${title} background image`}
               />
-            </Fragment>
+            </div>
           );
         })}
         {children}
