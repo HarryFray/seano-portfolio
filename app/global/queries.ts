@@ -1,4 +1,4 @@
-const PROJECT_QUERY = (slug: string) => `
+const buildProjectQuery = (slug: string): string => `
   query {
     project(filter: { slug: { eq: "${slug}" } }) {
       id
@@ -9,6 +9,12 @@ const PROJECT_QUERY = (slug: string) => `
       }
       nextProject {
         slug
+      }
+      landingGif {
+        responsiveImage {
+          base64
+          src
+        }
       }
       projectRole
       landingBackground {
@@ -26,7 +32,7 @@ const PROJECT_QUERY = (slug: string) => `
   }
 `;
 
-const PROJECTS_QUERY = `{
+const PROJECTS_QUERY: string = `{
     allProjects {
       id
       title
@@ -43,10 +49,15 @@ const PROJECTS_QUERY = `{
           src
         }
       }
+      projectImageGallery {
+        responsiveImage {
+          src
+        }
+      }
     }
   }`;
 
-const SEAN_INFO_QUERY = `{
+const SEAN_INFO_QUERY: string = `{
     seanInfo {
       workImage {
         responsiveImage {
@@ -56,4 +67,4 @@ const SEAN_INFO_QUERY = `{
     }
   }`;
 
-export { PROJECT_QUERY, PROJECTS_QUERY, SEAN_INFO_QUERY };
+export { buildProjectQuery, PROJECTS_QUERY, SEAN_INFO_QUERY };

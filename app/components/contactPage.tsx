@@ -1,16 +1,16 @@
-import { IseanInfo } from "../contact/page";
+import { seanInfo } from "../contact/page";
 import Image from "next/image";
 
-interface IcontactPageProps {
-  seanInfo: IseanInfo;
+interface contactPageProps {
+  seanInfo: seanInfo;
 }
 
-interface IsocialLinke {
+interface socialLinke {
   text: string;
   href: string;
 }
 
-const socialLinks: IsocialLinke[] = [
+const socialLinks: socialLinke[] = [
   {
     text: "hi@SEANOfilms.com",
     href: "mailto:hi@SEANOfilms.com",
@@ -29,7 +29,7 @@ const socialLinks: IsocialLinke[] = [
   },
 ];
 
-const ContactPage = ({ seanInfo }: IcontactPageProps) => {
+const ContactPage = ({ seanInfo }: contactPageProps) => {
   return (
     <main className="min-h-screen p-10 lg:p-40">
       <p className="mt-12 text-white">

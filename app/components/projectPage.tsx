@@ -2,16 +2,16 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { IProject } from "../global/globalStore";
+import { Project } from "../global/globalStore";
 import ProjectGallery from "../components/projectGallery";
 import { useAppStore } from "../global/globalStore";
 
-interface IProjectProps {
-  project: IProject;
-  allProjects: IProject[];
+interface projectProps {
+  project: Project;
+  allProjects: Project[];
 }
 
-const ProjectPage = ({ project, allProjects }: IProjectProps) => {
+const ProjectPage = ({ project, allProjects }: projectProps) => {
   const { setCurSelectedProject, setAllProjects } = useAppStore();
 
   useEffect(() => {

@@ -2,15 +2,15 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { IProject } from "../global/globalStore";
+import { Project } from "../global/globalStore";
 import useScreenSize from "../hooks/useWindowSizeHook";
 import { useAppStore } from "../global/globalStore";
 
-interface IProps {
-  allProjects: IProject[];
+interface landingPageProps {
+  allProjects: Project[];
 }
 
-const LandingPage = ({ allProjects }: IProps) => {
+const LandingPage = ({ allProjects }: landingPageProps) => {
   const [showCurrentGif, setShowCurrentGif] = useState(false);
 
   const { curSelectedProject, setCurSelectedProject, setAllProjects } =
@@ -24,6 +24,7 @@ const LandingPage = ({ allProjects }: IProps) => {
   }, [allProjects, setAllProjects, setCurSelectedProject, curSelectedProject]);
 
   const screenSize = useScreenSize();
+
   const isMobileScreenSize =
     screenSize === "xs" || screenSize === "sm" || screenSize === "md";
 
@@ -42,19 +43,19 @@ const LandingPage = ({ allProjects }: IProps) => {
         <div
           className={`w-[500px] max-w-full flex flex-col mb-10 lg:w-fit lg:m-0`}
         >
-          {allProjects.map((project, i) => {
+          {allProjects.map((project) => {
             const { title, slug, id } = project;
 
             const isCurSelectedProject = id === curSelectedProject.id;
 
             return (
-              <Fragment key={`${slug}${i}`}>
+              <Fragment key={`${slug}${id}`}>
                 <Link
                   onMouseEnter={() => setCurSelectedProject(project)}
                   className={`w-fit text-base font-semibold ${
                     isCurSelectedProject && "line-through"
                   } hover:line-through mb-1.5 text-white`}
-                  href={slug}
+                  href={`/project/${slug}`}
                 >
                   {title}
                 </Link>

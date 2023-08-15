@@ -1,12 +1,12 @@
 import { StateCreator, create } from "zustand";
 
-export interface IProject {
+export interface Project {
   id: string;
   title: string;
   slug: string;
   projectVideo: string;
-  prevProject: IProject;
-  nextProject: IProject;
+  prevProject: Project;
+  nextProject: Project;
   projectRole: string;
   projectImageGallery: {
     responsiveImage: {
@@ -28,19 +28,19 @@ export interface IProject {
 }
 
 export interface GlobalState {
-  curSelectedProject: IProject;
-  prevSelectedProject: IProject;
-  allProjects: IProject[];
+  curSelectedProject: Project;
+  prevSelectedProject: Project;
+  allProjects: Project[];
   globalLoading: boolean;
-  setCurSelectedProject: (product: IProject) => void;
-  setAllProjects: (projects: IProject[]) => void;
+  setCurSelectedProject: (product: Project) => void;
+  setAllProjects: (projects: Project[]) => void;
   setGlobalLoading: (loading: boolean) => void;
 }
 
 const initialState = {
-  curSelectedProject: {} as IProject,
-  prevSelectedProject: {} as IProject,
-  allProjects: [] as IProject[],
+  curSelectedProject: {} as Project,
+  prevSelectedProject: {} as Project,
+  allProjects: [] as Project[],
   globalLoading: true,
 };
 
@@ -52,7 +52,7 @@ export const createGlobalState: StateCreator<GlobalState> = (set) => ({
       curSelectedProject: project,
     }));
   },
-  setAllProjects: (projects: IProject[]) => {
+  setAllProjects: (projects: Project[]) => {
     return set(() => ({
       allProjects: projects,
     }));

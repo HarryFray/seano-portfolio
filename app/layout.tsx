@@ -6,7 +6,11 @@ import { useAppStore } from "./global/globalStore";
 import LandingFadeOut from "./components/landingFadeOut";
 import Image from "next/image";
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+interface rootLayoutProps {
+  children: React.ReactNode;
+}
+
+const RootLayout = ({ children }: rootLayoutProps) => {
   const { curSelectedProject, prevSelectedProject, allProjects } =
     useAppStore();
 
@@ -35,14 +39,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           </Link>
         </div>
         <LandingFadeOut />
-        {allProjects.map((project, i) => {
-          const { title, slug, landingBackground, id } = project;
-
+        {allProjects.map(({ title, slug, landingBackground, id }) => {
           const isCurSelectedProject = id === curSelectedProject.id;
           const isprevSelectedProject = id === prevSelectedProject.id;
 
           return (
-            <Fragment key={`${slug}${i}`}>
+            <Fragment key={`${slug}${id}`}>
               <Image
                 style={{
                   inset: 0,

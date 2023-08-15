@@ -31,16 +31,14 @@ const useScreenSize = (): ScreenSize => {
       }
     };
 
-    updateScreenSize(); // Set initial screen size on mount
+    updateScreenSize();
 
     const resizeHandler = () => {
       updateScreenSize();
     };
 
-    // Add event listener for window resize
     window.addEventListener("resize", resizeHandler);
 
-    // Cleanup event listener on unmount
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
