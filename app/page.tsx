@@ -1,26 +1,7 @@
 import LandingPage from "./components/landingPage";
 import peformRequest from "./global/datocms";
 import { IProject } from "./global/globalStore";
-
-const PROJECTS_QUERY = `{
-  allProjects {
-    id
-    title
-    slug
-    landingBackground {
-      responsiveImage {
-        base64
-        src
-      }
-    }
-    landingGif {
-      responsiveImage {
-        base64
-        src
-      }
-    }
-  }
-}`;
+import { PROJECTS_QUERY } from "./global/queries";
 
 const Home = async () => {
   const { data } = await peformRequest({ query: PROJECTS_QUERY });

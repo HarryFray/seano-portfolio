@@ -1,60 +1,7 @@
 import peformRequest from "../global/datocms";
 import { IProject } from "../global/globalStore";
 import ProjectPage from "../components/projectPage";
-
-const PROJECTS_QUERY = `{
-  allProjects {
-    id
-    title
-    slug
-    landingBackground {
-      responsiveImage {
-        base64
-        src
-      }
-    }
-    landingGif {
-      responsiveImage {
-        base64
-        src
-      }
-    }
-  }
-}`;
-
-const PROJECT_QUERY = (slug: string) => `
-  query {
-    project(filter: { slug: { eq: "${slug}" } }) {
-      title
-      projectVideo
-      id
-      prevProject {
-        slug
-      }
-      nextProject {
-        slug
-      }
-      projectRole
-      landingBackground {
-        responsiveImage {
-          base64
-          src
-        }
-      }
-      landingGif {
-        responsiveImage {
-          base64
-          src
-        }
-      }
-      projectImageGallery {
-        responsiveImage {
-          src
-        }
-      }
-    }
-  }
-`;
+import { PROJECT_QUERY, PROJECTS_QUERY } from "../global/queries";
 
 interface IProjectProps {
   params: {
