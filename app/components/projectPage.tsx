@@ -18,7 +18,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
   const screenSize = useScreenSize();
 
   const iFrameHeight = {
-    xs: 150,
+    xs: 180,
     sm: 200,
     md: 300,
     lg: 400,
@@ -32,14 +32,16 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
   }, [project, setCurSelectedProject, allProjects, setAllProjects]);
 
   return (
-    <main className="relative p-28">
+    <main className="relative pt-24 p-8 lg:p-28">
       <div className="flex flex-col items-center">
-        <h1 className="text-3xl text-white mb-8">{project?.title}</h1>
+        <h1 className="text-md lg:text-3xl text-white mb-8">
+          {project?.title}
+        </h1>
         <div className="relative flex items-center">
           <div>
             {project?.prevProject?.slug && (
               <Link href={`${project?.prevProject.slug}`}>
-                <span className="text-white text-4xl cursor-pointer">
+                <span className="text-white text-xl lg:text-4xl cursor-pointer">
                   <FaChevronLeft />
                 </span>
               </Link>
@@ -58,14 +60,16 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
           <div>
             {project?.nextProject?.slug && (
               <Link href={`${project?.nextProject.slug}`}>
-                <span className="text-white text-4xl cursor-pointer">
+                <span className="text-white text-xl lg:text-4xl cursor-pointer">
                   <FaChevronRight />
                 </span>
               </Link>
             )}
           </div>
         </div>
-        <h2 className="text-2xl text-white mt-8">{project?.projectRole}</h2>
+        <h2 className="text-sm  lg:text-2xl text-white mt-8">
+          {project?.projectRole}
+        </h2>
       </div>
       {project?.projectImageGallery?.length > 0 && (
         <ProjectGallery galleryImages={project?.projectImageGallery} />
