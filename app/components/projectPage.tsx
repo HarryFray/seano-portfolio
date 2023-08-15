@@ -5,6 +5,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Project } from "../global/globalStore";
 import ProjectGallery from "../components/projectGallery";
 import { useAppStore } from "../global/globalStore";
+import useScreenSize from "../hooks/useWindowSizeHook";
 
 interface projectProps {
   project: Project;
@@ -13,6 +14,17 @@ interface projectProps {
 
 const ProjectPage = ({ project, allProjects }: projectProps) => {
   const { setCurSelectedProject, setAllProjects } = useAppStore();
+
+  const screenSize = useScreenSize();
+
+  const iFrameHeight = {
+    xs: 150,
+    sm: 200,
+    md: 300,
+    lg: 400,
+    xl: 500,
+    "2xl": 600,
+  }[screenSize];
 
   useEffect(() => {
     setCurSelectedProject(project);
@@ -24,7 +36,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
       <div className="flex flex-col items-center">
         <h1 className="text-3xl text-white mb-8">{project?.title}</h1>
         <div className="relative flex items-center">
-          <div className="absolute -left-16">
+          <div>
             {project?.prevProject?.slug && (
               <Link href={`${project?.prevProject.slug}`}>
                 <span className="text-white text-4xl cursor-pointer">
@@ -36,12 +48,14 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
           <iframe
             src={project?.projectVideo}
             allow="autoplay; fullscreen; picture-in-picture"
-            style={{ animation: "fadein 1s" }}
+            style={{
+              animation: "fadein 1s",
+              width: iFrameHeight * 1.8,
+              height: iFrameHeight,
+            }}
             allowFullScreen
-            width={1000}
-            height={600}
           />
-          <div className="absolute -right-16">
+          <div>
             {project?.nextProject?.slug && (
               <Link href={`${project?.nextProject.slug}`}>
                 <span className="text-white text-4xl cursor-pointer">
