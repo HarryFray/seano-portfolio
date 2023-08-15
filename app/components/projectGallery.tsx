@@ -2,45 +2,42 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa";
-import { IProject } from "../global/globalStore";
+import { Project } from "../global/globalStore";
 
-interface IProjectGalleryProps {
-  galleryImages: IProject["projectImageGallery"];
+interface projectGalleryProps {
+  galleryImages: Project["projectImageGallery"];
 }
 
-const ProjectGallery = ({ galleryImages }: IProjectGalleryProps) => {
+const ProjectGallery = ({ galleryImages }: projectGalleryProps) => {
   const [showArrow, setShowArrow] = useState(true);
+
   const galleryRef = useRef<null | HTMLDivElement>(null);
 
-  const handleArrowClick = () => {
+  const handleDownArrowClick = () => {
     galleryRef?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleScroll = () => {
-    setShowArrow(false);
-  };
-
   useState(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", () => setShowArrow(false));
     return (): void => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", () => setShowArrow(false));
     };
   });
 
   return (
     <div className="flex flex-col items-center" ref={galleryRef}>
       <span className="text-white text-4xl cursor-pointer mt-16 h-20">
-        {showArrow && <FaChevronDown onClick={handleArrowClick} />}
+        {showArrow && <FaChevronDown onClick={handleDownArrowClick} />}
       </span>
       <div className="flex flex-wrap mt-8">
-        {galleryImages.map((image, index) => (
-          <div key={index} className="w-1/4 p-2">
+        {galleryImages.map(({ responsiveImage }, i) => (
+          <div key={i} className="w-1/4 p-2">
             <Image
-              src={image?.responsiveImage?.src}
+              src={responsiveImage?.src}
               layout="responsive"
               width={1200}
               height={800}
-              alt={`Gallery Image ${index + 1}`}
+              alt={`Gallery Image ${i + 1}`}
             />
           </div>
         ))}
