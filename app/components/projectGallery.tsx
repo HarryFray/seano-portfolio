@@ -1,9 +1,8 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa";
 import { Project } from "../global/globalStore";
-import useScreenSize from "../hooks/useWindowSizeHook";
 
 interface projectGalleryProps {
   galleryImages: Project["projectImageGallery"];
@@ -13,8 +12,6 @@ const ProjectGallery = ({ galleryImages }: projectGalleryProps) => {
   const [showArrow, setShowArrow] = useState(true);
 
   const galleryRef = useRef<null | HTMLDivElement>(null);
-
-  const screenSize = useScreenSize();
 
   const handleDownArrowClick = () => {
     galleryRef?.current?.scrollIntoView({ behavior: "smooth" });
