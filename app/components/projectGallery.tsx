@@ -29,17 +29,16 @@ const ProjectGallery = ({ galleryImages }: projectGalleryProps) => {
       <span className="text-white text-4xl cursor-pointer mt-16 h-20">
         {showArrow && <FaChevronDown onClick={handleDownArrowClick} />}
       </span>
-      <div className="flex flex-wrap mt-8">
+      <div className="flex flex-wrap mt-8 mx-auto items-center justify-center">
         {galleryImages.map(({ responsiveImage }, i) => (
-          <div key={i} className="w-1/4 p-2">
-            <Image
-              src={responsiveImage?.src}
-              layout="responsive"
-              width={1200}
-              height={800}
-              alt={`Gallery Image ${i + 1}`}
-            />
-          </div>
+          <Image
+            style={{ margin: "8px" }}
+            key={i}
+            src={responsiveImage?.src}
+            width={400}
+            height={200}
+            alt={`Gallery Image ${i + 1}`}
+          />
         ))}
       </div>
     </div>
