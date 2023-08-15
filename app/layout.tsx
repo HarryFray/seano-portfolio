@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useAppStore } from "./global/globalStore";
 import LandingFadeOut from "./components/landingFadeOut";
 import Image from "next/image";
+import Logo from "./components/logo";
 
 interface rootLayoutProps {
   children: React.ReactNode;
@@ -25,12 +26,7 @@ const RootLayout = ({ children }: rootLayoutProps) => {
       </head>
       <body>
         <div className="fixed top-0 left-0 right-0 p-4 w-screen flex items-center justify-between z-10">
-          <Link
-            href="/"
-            className="text-4xl font-bold text-white hover:line-through"
-          >
-            SEAN O’NEILL
-          </Link>
+          <Logo />
           <Link
             href="/contact"
             className="text-2xl font-bold hover:line-through text-white"
