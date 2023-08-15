@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 
 const LandingFadeOut = () => {
@@ -20,14 +19,16 @@ const LandingFadeOut = () => {
 
   return !fadeOutComplete ? (
     <div
-      className={`flex flex-col items-center justify-center fixed inset-0 bg-black z-20 ${
+      className={`p-8 flex flex-col items-center justify-center fixed inset-0 bg-black z-20 ${
         showBackground ? "" : "opacity-0 transition-opacity duration-1000"
       }`}
     >
-      <h2 className="text-2xl text-white font-bold">
+      <h2 className="text-xl sm:text-2xl md:text-3xl text-white font-bold text-center">
         {`"Like I don't even know what boxes are"`}
       </h2>
-      <h1 className="text-6xl text-white font-bold mt-12">- SEAN O’NEILL</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-bold mt-6 sm:mt-10 md:mt-12 text-center">
+        - SEAN O’NEILL
+      </h1>
     </div>
   ) : null;
 };
