@@ -1,10 +1,20 @@
+"use client";
 import LandingPage from "./components/landingPage";
-import peformRequest from "./global/datocms";
 import { Project } from "./global/globalStore";
 import { PROJECTS_QUERY } from "./global/queries";
+import { useQuerySubscription } from "react-datocms";
 
-const Home = async () => {
-  const { data } = await peformRequest({ query: PROJECTS_QUERY });
+const apiToken = process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN;
+const Home = () => {
+  const { status, data } = useQuerySubscription({
+    enabled: true,
+    query: PROJECTS_QUERY,
+    token: apiToken as string,
+  });
+
+  if (status === "connecting" || !data) {
+    return null;
+  }
 
   const allProjects: Project[] = data.allProjects;
 
