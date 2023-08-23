@@ -1,9 +1,9 @@
 "use client";
+import Head from "next/head";
 import { Project } from "../../global/globalStore";
 import ProjectPage from "../../components/projectPage";
 import { buildProjectQuery, PROJECTS_QUERY } from "../../global/queries";
 import { useQuerySubscription } from "react-datocms";
-
 interface projectProps {
   params: {
     project_id: string;
@@ -31,7 +31,19 @@ const Project = ({ params }: projectProps) => {
 
   const project: Project = projectData.project;
 
-  return <ProjectPage project={project} allProjects={allProjects} />;
+  return (
+    <>
+      <Head>
+        <title>Its party time</title>
+        <meta
+          name="description"
+          content={`${project.title} - ${project.projectRole}`}
+          key="desc"
+        />
+      </Head>
+      <ProjectPage project={project} allProjects={allProjects} />;
+    </>
+  );
 };
 
 export default Project;
