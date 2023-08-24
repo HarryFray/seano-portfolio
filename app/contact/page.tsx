@@ -5,9 +5,7 @@ import { useQuerySubscription } from "react-datocms";
 
 export interface seanInfo {
   workImage: {
-    responsiveImage: {
-      src: string;
-    };
+    webp: string;
   };
 }
 

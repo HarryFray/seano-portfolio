@@ -9,21 +9,13 @@ export interface Project {
   nextProject: Project;
   projectRole: string;
   projectImageGallery: {
-    responsiveImage: {
-      src: string;
-    };
+    webp: string;
   }[];
   landingBackground: {
-    responsiveImage: {
-      src: string;
-      base64: string;
-    };
+    webp: string;
   };
   landingGif: {
-    responsiveImage: {
-      src: string;
-      base64: string;
-    };
+    webp: string;
   };
 }
 

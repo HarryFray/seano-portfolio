@@ -30,11 +30,11 @@ const ProjectGallery = ({ galleryImages }: projectGalleryProps) => {
         {showArrow && <FaChevronDown onClick={handleDownArrowClick} />}
       </span>
       <div className="flex flex-wrap mt-8 mx-auto items-center justify-center">
-        {galleryImages.map(({ responsiveImage }, i) => (
+        {galleryImages.map(({ webp }, i) => (
           <Image
             style={{ margin: "8px" }}
             key={i}
-            src={responsiveImage?.src}
+            src={webp}
             width={400}
             height={200}
             alt={`Gallery Image ${i + 1}`}

@@ -65,7 +65,7 @@ const LandingPage = ({ allProjects }: landingPageProps) => {
         </div>
         {curSelectedProject?.id && (
           <Image
-            src={curSelectedProject?.landingGif?.responsiveImage?.src}
+            src={curSelectedProject?.landingGif?.webp}
             alt={`${curSelectedProject.title} gif`}
             quality={100}
             width={500}

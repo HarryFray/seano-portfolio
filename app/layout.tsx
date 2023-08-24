@@ -23,7 +23,7 @@ const RootLayout = ({ children }: rootLayoutProps) => {
           content={`${curSelectedProject?.title} - ${curSelectedProject?.projectRole}`}
           key="desc"
         />
-        <meta name="robots" content="index, follow" />
+        {/* <meta name="robots" content="index, follow" /> */}
         <link
           href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&family=Ubuntu+Mono&display=swap"
           rel="stylesheet"
@@ -61,7 +61,7 @@ const RootLayout = ({ children }: rootLayoutProps) => {
               }}
             >
               <Image
-                src={landingBackground?.responsiveImage?.src}
+                src={landingBackground?.webp}
                 fill
                 objectFit="cover"
                 quality={100}

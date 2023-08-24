@@ -11,22 +11,14 @@ const buildProjectQuery = (slug: string): string => `
         slug
       }
       landingGif {
-        responsiveImage {
-          base64
-          src
-        }
+        webp: url(imgixParams: {fm: webp, q: 60})
       }
       projectRole
       landingBackground {
-        responsiveImage {
-          base64
-          src
-        }
+        webp: url(imgixParams: {fm: webp, q: 60})
       }
       projectImageGallery {
-        responsiveImage {
-          src
-        }
+        webp: url(imgixParams: {fm: webp, q: 60})
       }
     }
   }
@@ -38,21 +30,13 @@ const PROJECTS_QUERY: string = `{
       title
       slug
       landingBackground {
-        responsiveImage {
-          base64
-          src
-        }
+        webp: url(imgixParams: {fm: webp, q: 60})
       }
       landingGif {
-        responsiveImage {
-          base64
-          src
-        }
+        webp: url(imgixParams: {fm: webp, q: 60})
       }
       projectImageGallery {
-        responsiveImage {
-          src
-        }
+        webp: url(imgixParams: {fm: webp, q: 60})
       }
     }
   }`;
@@ -60,9 +44,7 @@ const PROJECTS_QUERY: string = `{
 const SEAN_INFO_QUERY: string = `{
     seanInfo {
       workImage {
-        responsiveImage {
-          src
-        }
+        webp: url(imgixParams: {fm: webp, q: 60})
       }
     }
   }`;
