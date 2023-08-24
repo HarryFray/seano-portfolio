@@ -31,19 +31,7 @@ const Project = ({ params }: projectProps) => {
 
   const project: Project = projectData.project;
 
-  return (
-    <>
-      <Head>
-        <title>Its party time</title>
-        <meta
-          name="description"
-          content={`${project.title} - ${project.projectRole}`}
-          key="desc"
-        />
-      </Head>
-      <ProjectPage project={project} allProjects={allProjects} />;
-    </>
-  );
+  return <ProjectPage project={project} allProjects={allProjects} />;
 };
 
 export default Project;
