@@ -64,7 +64,7 @@ const ContactPage = ({ seanInfo }: contactPageProps) => {
         </div>
         <Image
           src={seanInfo.workImage.responsiveImage.src}
-          alt="Work Image"
+          alt="Sean O'Neill at work"
           width={400}
           height={400}
         />
