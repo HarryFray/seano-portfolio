@@ -1,9 +1,9 @@
 "use client";
-import Head from "next/head";
 import { Project } from "../../global/globalStore";
 import ProjectPage from "../../components/projectPage";
 import { buildProjectQuery, PROJECTS_QUERY } from "../../global/queries";
 import { useQuerySubscription } from "react-datocms";
+
 interface projectProps {
   params: {
     project_id: string;
