@@ -31,8 +31,10 @@ const Project = ({ params }: projectProps) => {
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   });
 
-  console.log("DATO projectError ERROR: ", projectError);
-  console.log("DATO allProjectsError ERROR: ", allProjectsError);
+  if (projectError || allProjectsError) {
+    console.log("DATO projectError ERROR: ", projectError);
+    console.log("DATO allProjectsError ERROR: ", allProjectsError);
+  }
 
   if (
     !projectData ||

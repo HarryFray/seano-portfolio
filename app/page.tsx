@@ -11,7 +11,9 @@ const Home = () => {
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   });
 
-  console.log("DATO ERROR: ", error);
+  if (error) {
+    console.log("DATO ERROR: ", error);
+  }
 
   if (status === "connecting" || !data) {
     return null;
