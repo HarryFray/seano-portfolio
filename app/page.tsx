@@ -5,11 +5,13 @@ import { PROJECTS_QUERY } from "./global/queries";
 import { useQuerySubscription } from "react-datocms";
 
 const Home = () => {
-  const { status, data } = useQuerySubscription({
+  const { status, error, data } = useQuerySubscription({
     enabled: true,
     query: PROJECTS_QUERY,
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   });
+
+  console.log("DATO ERROR: ", error);
 
   if (status === "connecting" || !data) {
     return null;

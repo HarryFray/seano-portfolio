@@ -11,19 +11,35 @@ interface projectProps {
 }
 
 const Project = ({ params }: projectProps) => {
-  const { data: projectData } = useQuerySubscription({
+  const {
+    status: projectStatus,
+    data: projectData,
+    error: projectError,
+  } = useQuerySubscription({
     enabled: true,
     query: buildProjectQuery(params.project_id),
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   });
 
-  const { data: allProjectsData } = useQuerySubscription({
+  const {
+    status: allProjectsStatus,
+    data: allProjectsData,
+    error: allProjectsError,
+  } = useQuerySubscription({
     enabled: true,
     query: PROJECTS_QUERY,
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   });
 
-  if (!projectData || !allProjectsData) {
+  console.log("DATO projectError ERROR: ", projectError);
+  console.log("DATO allProjectsError ERROR: ", allProjectsError);
+
+  if (
+    !projectData ||
+    !allProjectsData ||
+    projectStatus === "connecting" ||
+    allProjectsStatus === "connecting"
+  ) {
     return null;
   }
 

@@ -10,11 +10,13 @@ export interface seanInfo {
 }
 
 const Contact = () => {
-  const { status, data } = useQuerySubscription({
+  const { status, error, data } = useQuerySubscription({
     enabled: true,
     query: SEAN_INFO_QUERY,
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   });
+
+  console.log("DATO ERROR: ", error);
 
   if (status === "connecting" || !data) {
     return null;
