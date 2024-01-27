@@ -11,7 +11,7 @@ const RootLayout = () => {
         SEANO
         <br className="xl:hidden" />
       </Link>
-      <span className="text-lg pl-3 text-white font-light">
+      <span className="text-md pl-3 text-white font-light">
         Director & Cinematographer
       </span>
     </div>
