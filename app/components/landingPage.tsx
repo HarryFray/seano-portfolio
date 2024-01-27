@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Project } from "../global/globalStore";
 import useScreenSize from "../hooks/useWindowSizeHook";
 import { useAppStore } from "../global/globalStore";
+import { useRouter } from "next/navigation";
 
 interface landingPageProps {
   allProjects: Project[];
@@ -15,6 +16,8 @@ const LandingPage = ({ allProjects }: landingPageProps) => {
 
   const { curSelectedProject, setCurSelectedProject, setAllProjects } =
     useAppStore();
+
+  const router = useRouter();
 
   useEffect(() => {
     setAllProjects(allProjects);
@@ -67,6 +70,7 @@ const LandingPage = ({ allProjects }: landingPageProps) => {
           <Image
             src={curSelectedProject?.landingGif?.webp}
             alt={`${curSelectedProject.title} gif`}
+            onClick={() => router.push(`/project/${curSelectedProject.slug}`)}
             quality={100}
             width={500}
             height={500}
@@ -74,6 +78,7 @@ const LandingPage = ({ allProjects }: landingPageProps) => {
               animation: "fadein 2.5s",
               display: showCurrentGif ? "block" : "none",
             }}
+            className="cursor-pointer"
           />
         )}
       </div>
