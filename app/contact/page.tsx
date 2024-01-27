@@ -7,6 +7,7 @@ export interface seanInfo {
   workImage: {
     webp: string;
   };
+  contactPageText: string;
 }
 
 const Contact = () => {

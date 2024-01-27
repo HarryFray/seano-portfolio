@@ -46,6 +46,7 @@ const SEAN_INFO_QUERY: string = `{
       workImage {
         webp: url(imgixParams: {fm: webp, q: 60})
       }
+      contactPageText
     }
   }`;
 
