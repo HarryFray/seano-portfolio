@@ -34,7 +34,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
   return (
     <main className="relative pt-24 p-8 lg:p-28">
       <div className="flex flex-col items-center">
-        <h1 className="text-md lg:text-3xl text-white mb-8">
+        <h1 className="text-md lg:text-2xl text-white mb-4">
           {project?.title}
         </h1>
         <div className="relative flex items-center w-full justify-between">
@@ -67,7 +67,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
             )}
           </div>
         </div>
-        <h2 className="text-sm  lg:text-2xl text-white mt-8">
+        <h2 className="text-sm  lg:text-xl text-white mt-4">
           {project?.projectRole}
         </h2>
       </div>
