@@ -37,7 +37,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
         <h1 className="text-md lg:text-3xl text-white mb-8">
           {project?.title}
         </h1>
-        <div className="relative flex items-center">
+        <div className="relative flex items-center w-full justify-between">
           <div>
             {project?.prevProject?.slug && (
               <Link href={`${project?.prevProject.slug}`}>
