@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa";
 import { Project } from "../global/globalStore";
 
-const checkIfElementIsInViewport = (element: Element): boolean => {
+const checkIfElementIsInViewport = (element: Element | null): boolean => {
   if (!element) return false;
 
   const rect = element?.getBoundingClientRect();
