@@ -23,13 +23,8 @@ const LandingFadeOut = () => {
         showBackground ? "" : "opacity-0 transition-opacity duration-1000"
       }`}
     >
-      <h2 className="text-xl sm:text-2xl md:text-3xl text-white font-bold text-center">
-        Somewhere between wonder and memory, lies a complex vitality — that
-        which makes us human. Light and sound, feeling and color; there’s an
-        intersection found here that collectively reminds us we’re alive.
-      </h2>
       <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-bold mt-6 sm:mt-10 md:mt-12 text-center">
-        - SEAN O’NEILL
+        SEANO
       </h1>
     </div>
   ) : null;
