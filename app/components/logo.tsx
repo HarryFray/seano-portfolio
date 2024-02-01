@@ -1,6 +1,11 @@
 import Link from "next/link";
+import useScreenSize from "../hooks/useWindowSizeHook";
 
 const RootLayout = () => {
+  const screenSize = useScreenSize();
+
+  const isMobileScreenSize = screenSize === "xs" || screenSize === "sm";
+
   return (
     <div className="flex items-center">
       <Link
@@ -11,9 +16,11 @@ const RootLayout = () => {
         SEANO
         <br className="xl:hidden" />
       </Link>
-      <span className="text-md pl-3 text-white font-light">
-        Director & Cinematographer
-      </span>
+      {!isMobileScreenSize && (
+        <span className="text-md pl-3 text-white font-light">
+          Director & Cinematographer
+        </span>
+      )}
     </div>
   );
 };
