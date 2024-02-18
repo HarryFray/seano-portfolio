@@ -5,11 +5,6 @@ interface contactPageProps {
   seanInfo: seanInfo;
 }
 
-interface socialLink {
-  text: string;
-  href: string;
-}
-
 const ContactPage = ({ seanInfo }: contactPageProps) => {
   return (
     <main className="min-h-screen p-10 lg:p-40 flex flex-col items-center justify-center">
