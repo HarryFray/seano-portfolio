@@ -23,7 +23,6 @@ const RootLayout = ({ children }: rootLayoutProps) => {
           content={`${curSelectedProject?.title} - ${curSelectedProject?.projectRole}`}
           key="desc"
         />
-        {/* <meta name="robots" content="index, follow" /> */}
         <link
           href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&family=Ubuntu+Mono&display=swap"
           rel="stylesheet"
