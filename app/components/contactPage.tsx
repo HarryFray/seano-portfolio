@@ -15,9 +15,10 @@ const ContactPage = ({ seanInfo }: contactPageProps) => {
         height={400}
         className="mb-8"
       />
-      <div className="text-white text-center whitespace-pre-wrap leading-5 font-light">
-        {seanInfo.contactPageText}
-      </div>
+      <div
+        className="text-white text-center whitespace-pre-wrap leading-5 font-light"
+        dangerouslySetInnerHTML={{ __html: seanInfo.contactPageText }}
+      />
     </main>
   );
 };
