@@ -19,9 +19,13 @@ const checkIfElementIsInViewport = (element: Element | null): boolean => {
 
 interface projectGalleryProps {
   galleryImages: Project["projectImageGallery"];
+  galleryVideos: Project["projectVideoGallery"];
 }
 
-const ProjectGallery = ({ galleryImages }: projectGalleryProps) => {
+const ProjectGallery = ({
+  galleryImages,
+  galleryVideos,
+}: projectGalleryProps) => {
   const [showArrow, setShowArrow] = useState(true);
 
   const galleryRef = useRef<null | HTMLDivElement>(null);
@@ -56,6 +60,17 @@ const ProjectGallery = ({ galleryImages }: projectGalleryProps) => {
         ref={imagesContainer}
       >
         {galleryImages.map(({ webp }, i) => (
+          <Image
+            style={{ margin: "8px" }}
+            key={i}
+            src={webp}
+            width={400}
+            height={200}
+            alt={`Gallery Image ${i + 1}`}
+          />
+        ))}
+        {/* TODO: UPDATE TO HANDLE FULL SCREEN VIDEO CLICKS... */}
+        {galleryVideos.map(({ webp }, i) => (
           <Image
             style={{ margin: "8px" }}
             key={i}

@@ -20,6 +20,9 @@ const buildProjectQuery = (slug: string): string => `
       projectImageGallery {
         webp: url(imgixParams: {fm: webp, q: 60})
       }
+      projectVideoGallery {
+        webp: url(imgixParams: {fm: webp, q: 60})
+      }
     }
   }
 `;
@@ -36,6 +39,9 @@ const PROJECTS_QUERY: string = `{
         webp: url(imgixParams: {fm: webp, q: 60})
       }
       projectImageGallery {
+        webp: url(imgixParams: {fm: webp, q: 60})
+      }
+      projectVideoGallery {
         webp: url(imgixParams: {fm: webp, q: 60})
       }
     }

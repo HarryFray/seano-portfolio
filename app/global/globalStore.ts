@@ -11,6 +11,9 @@ export interface Project {
   projectImageGallery: {
     webp: string;
   }[];
+  projectVideoGallery: {
+    webp: string;
+  }[];
   landingBackground: {
     webp: string;
   };
