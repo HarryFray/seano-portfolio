@@ -72,7 +72,10 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
         </h2>
       </div>
       {project?.projectImageGallery?.length > 0 && (
-        <ProjectGallery galleryImages={project?.projectImageGallery} />
+        <ProjectGallery
+          galleryImages={project?.projectImageGallery}
+          galleryVideos={project?.projectVideoGallery}
+        />
       )}
     </main>
   );
