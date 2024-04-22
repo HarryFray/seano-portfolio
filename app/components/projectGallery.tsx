@@ -92,7 +92,8 @@ const ProjectGallery = ({
             console.log(videoLink);
             return (
               <Image
-                style={{ margin: "8px" }}
+                className="cursor-pointer hover:scale-105 transition-all"
+                style={{ margin: "12px" }}
                 key={i}
                 src={webp}
                 width={400}
