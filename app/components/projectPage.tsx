@@ -50,12 +50,12 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
           <iframe
             src={project?.projectVideo}
             allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
             style={{
               animation: "fadein 1s",
               width: iFrameHeight * 1.8,
               height: iFrameHeight,
             }}
-            allowFullScreen
           />
           <div>
             {project?.nextProject?.slug && (
@@ -76,6 +76,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
         <ProjectGallery
           galleryImages={project?.projectImageGallery}
           galleryVideos={project?.projectVideoGallery}
+          iFrameHeight={iFrameHeight}
         />
       )}
     </main>
