@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 import { Project } from "../global/globalStore";
 
 const checkIfElementIsInViewport = (element: Element | null): boolean => {
@@ -89,20 +90,26 @@ const ProjectGallery = ({
           ))}
           {galleryVideos.map(({ webp, customData }, i) => {
             const { videoLink } = customData;
-            console.log(videoLink);
             return (
-              <Image
-                className="cursor-pointer hover:scale-105 transition-all"
-                style={{ margin: "12px" }}
+              <div
                 key={i}
-                src={webp}
-                width={400}
-                height={200}
-                alt={`Gallery Image ${i + 1}`}
-                onClick={() => {
-                  setFullScreenVideoLink(videoLink);
-                }}
-              />
+                className="relative flex items-center justify-center hover:scale-105 transition-all"
+              >
+                <span className="absolute text-white text-xl lg:text-4xl cursor-pointer z-10">
+                  <FaPlay />
+                </span>
+                <Image
+                  className="cursor-pointer"
+                  style={{ margin: "12px" }}
+                  src={webp}
+                  width={400}
+                  height={200}
+                  alt={`Gallery Image ${i + 1}`}
+                  onClick={() => {
+                    setFullScreenVideoLink(videoLink);
+                  }}
+                />
+              </div>
             );
           })}
         </div>
