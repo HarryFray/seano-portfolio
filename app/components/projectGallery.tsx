@@ -21,11 +21,13 @@ const checkIfElementIsInViewport = (element: Element | null): boolean => {
 interface projectGalleryProps {
   galleryImages: Project["projectImageGallery"];
   galleryVideos: Project["projectVideoGallery"];
+  iFrameHeight: string;
 }
 
 const ProjectGallery = ({
   galleryImages,
   galleryVideos,
+  iFrameHeight,
 }: projectGalleryProps) => {
   const [showArrow, setShowArrow] = useState(true);
   const [fullScreenVideoLink, setFullScreenVideoLink] = useState("");
@@ -57,18 +59,18 @@ const ProjectGallery = ({
       {fullScreenVideoLink && (
         <div
           onClick={() => setFullScreenVideoLink("")}
-          className="fixed flex items-center justify-center w-screen h-screen bg-orange-400 top-0 left-0"
+          className="fixed flex items-center justify-center w-screen h-screen top-0 left-0"
         >
           <iframe
             src={fullScreenVideoLink}
             allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
             style={{
               animation: "fadein 1s",
-              width: "80%",
-              height: "80%",
+              width: iFrameHeight * 2.2,
+              height: iFrameHeight * 1.4,
               zIndex: 1000,
             }}
-            allowFullScreen
           />
         </div>
       )}
