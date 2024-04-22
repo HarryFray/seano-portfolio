@@ -54,8 +54,8 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
             allowFullScreen
             style={{
               animation: "fadein 1s",
-              width: iFrameHeight * 1.8,
-              height: iFrameHeight,
+              width: Number(iFrameHeight) * 1.8,
+              height: Number(iFrameHeight),
             }}
           />
           <div>

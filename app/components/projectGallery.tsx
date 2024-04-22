@@ -23,7 +23,7 @@ const checkIfElementIsInViewport = (element: Element | null): boolean => {
 interface projectGalleryProps {
   galleryImages: Project["projectImageGallery"];
   galleryVideos: Project["projectVideoGallery"];
-  iFrameHeight: string;
+  iFrameHeight: number;
 }
 
 const ProjectGallery = ({
@@ -73,8 +73,8 @@ const ProjectGallery = ({
               allowFullScreen
               style={{
                 animation: "fadein 1s",
-                width: iFrameHeight * 2.2,
-                height: iFrameHeight * 1.4,
+                width: Number(iFrameHeight) * 2.2,
+                height: Number(iFrameHeight) * 1.4,
                 zIndex: 1000,
               }}
             />
