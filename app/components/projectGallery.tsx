@@ -27,6 +27,7 @@ const ProjectGallery = ({
   galleryVideos,
 }: projectGalleryProps) => {
   const [showArrow, setShowArrow] = useState(true);
+  const [fullScreenVideoLink, setFullScreenVideoLink] = useState("");
 
   const galleryRef = useRef<null | HTMLDivElement>(null);
   const imagesContainer = useRef<null | HTMLDivElement>(null);
@@ -51,37 +52,61 @@ const ProjectGallery = ({
   };
 
   return (
-    <div className="flex flex-col items-center" ref={galleryRef}>
-      <span className="text-white mt-4 h-8 lg:text-4xl  cursor-pointer lg:mt-16 md:h-20">
-        {showArrow && <FaChevronDown onClick={handleDownArrowClick} />}
-      </span>
-      <div
-        className="flex flex-wrap mt-8 mx-auto items-center justify-center"
-        ref={imagesContainer}
-      >
-        {galleryImages.map(({ webp }, i) => (
-          <Image
-            style={{ margin: "8px" }}
-            key={i}
-            src={webp}
-            width={400}
-            height={200}
-            alt={`Gallery Image ${i + 1}`}
-          />
-        ))}
-        {/* TODO: UPDATE TO HANDLE FULL SCREEN VIDEO CLICKS... */}
-        {galleryVideos.map(({ webp }, i) => (
-          <Image
-            style={{ margin: "8px" }}
-            key={i}
-            src={webp}
-            width={400}
-            height={200}
-            alt={`Gallery Image ${i + 1}`}
-          />
-        ))}
+    <>
+      {fullScreenVideoLink && (
+        <iframe
+          onBlur={() => setFullScreenVideoLink("")}
+          src={fullScreenVideoLink}
+          allow="autoplay; fullscreen; picture-in-picture"
+          style={{
+            animation: "fadein 1s",
+            width: "90%",
+            height: "90%",
+            position: "absolute",
+            left: 0,
+            top: 0,
+          }}
+          allowFullScreen
+        />
+      )}
+      <div className="flex flex-col items-center" ref={galleryRef}>
+        <span className="text-white mt-4 h-8 lg:text-4xl  cursor-pointer lg:mt-16 md:h-20">
+          {showArrow && <FaChevronDown onClick={handleDownArrowClick} />}
+        </span>
+        <div
+          className="flex flex-wrap mt-8 mx-auto items-center justify-center"
+          ref={imagesContainer}
+        >
+          {galleryImages.map(({ webp }, i) => (
+            <Image
+              style={{ margin: "8px" }}
+              key={i}
+              src={webp}
+              width={400}
+              height={200}
+              alt={`Gallery Image ${i + 1}`}
+            />
+          ))}
+          {galleryVideos.map(({ webp, customData }, i) => {
+            const { videoLink } = customData;
+            console.log(videoLink);
+            return (
+              <Image
+                style={{ margin: "8px" }}
+                key={i}
+                src={webp}
+                width={400}
+                height={200}
+                alt={`Gallery Image ${i + 1}`}
+                onClick={() => {
+                  setFullScreenVideoLink(videoLink);
+                }}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
