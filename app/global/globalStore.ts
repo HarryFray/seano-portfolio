@@ -13,6 +13,9 @@ export interface Project {
   }[];
   projectVideoGallery: {
     webp: string;
+    customData: {
+      videoLink: string;
+    };
   }[];
   landingBackground: {
     webp: string;

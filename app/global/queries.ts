@@ -22,6 +22,7 @@ const buildProjectQuery = (slug: string): string => `
       }
       projectVideoGallery {
         webp: url(imgixParams: {fm: webp, q: 60})
+        customData
       }
     }
   }
@@ -43,6 +44,7 @@ const PROJECTS_QUERY: string = `{
       }
       projectVideoGallery {
         webp: url(imgixParams: {fm: webp, q: 60})
+        customData
       }
     }
   }`;
