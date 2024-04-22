@@ -55,20 +55,22 @@ const ProjectGallery = ({
   return (
     <>
       {fullScreenVideoLink && (
-        <iframe
-          onBlur={() => setFullScreenVideoLink("")}
-          src={fullScreenVideoLink}
-          allow="autoplay; fullscreen; picture-in-picture"
-          style={{
-            animation: "fadein 1s",
-            width: "90%",
-            height: "90%",
-            position: "absolute",
-            left: 0,
-            top: 0,
-          }}
-          allowFullScreen
-        />
+        <div
+          onClick={() => setFullScreenVideoLink("")}
+          className="fixed flex items-center justify-center w-screen h-screen bg-orange-400 top-0 left-0"
+        >
+          <iframe
+            src={fullScreenVideoLink}
+            allow="autoplay; fullscreen; picture-in-picture"
+            style={{
+              animation: "fadein 1s",
+              width: "80%",
+              height: "80%",
+              zIndex: 1000,
+            }}
+            allowFullScreen
+          />
+        </div>
       )}
       <div className="flex flex-col items-center" ref={galleryRef}>
         <span className="text-white mt-4 h-8 lg:text-4xl  cursor-pointer lg:mt-16 md:h-20">
@@ -95,7 +97,7 @@ const ProjectGallery = ({
                 key={i}
                 className="relative flex items-center justify-center hover:scale-105 transition-all"
               >
-                <span className="absolute text-white text-xl lg:text-4xl cursor-pointer z-10">
+                <span className="absolute text-white text-xl lg:text-4xl cursor-pointer z-1">
                   <FaPlay />
                 </span>
                 <Image
