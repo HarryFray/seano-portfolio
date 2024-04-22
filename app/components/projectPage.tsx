@@ -30,6 +30,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
     setCurSelectedProject(project);
     setAllProjects(allProjects);
   }, [project, setCurSelectedProject, allProjects, setAllProjects]);
+  console.log(project?.projectVideo);
 
   return (
     <main className="relative pt-24 p-8 lg:p-28">
