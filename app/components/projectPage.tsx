@@ -30,7 +30,6 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
     setCurSelectedProject(project);
     setAllProjects(allProjects);
   }, [project, setCurSelectedProject, allProjects, setAllProjects]);
-  console.log(project?.projectVideo);
 
   return (
     <main className="relative pt-24 p-8 lg:p-28">
@@ -71,6 +70,11 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
         <h2 className="text-sm  lg:text-xl text-white mt-4">
           {project?.projectRole}
         </h2>
+        {project?.projectDescription && (
+          <h2 className="text-sm  lg:text-xl text-white mt-4">
+            {project?.projectDescription}
+          </h2>
+        )}
       </div>
       {(project?.projectImageGallery?.length > 0 ||
         project?.projectVideoGallery?.length > 0) && (

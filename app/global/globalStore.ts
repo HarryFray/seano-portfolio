@@ -8,6 +8,7 @@ export interface Project {
   prevProject: Project;
   nextProject: Project;
   projectRole: string;
+  projectDescription: string;
   projectImageGallery: {
     webp: string;
   }[];

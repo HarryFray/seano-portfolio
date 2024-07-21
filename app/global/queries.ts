@@ -14,6 +14,7 @@ const buildProjectQuery = (slug: string): string => `
         webp: url(imgixParams: {fm: webp, q: 60})
       }
       projectRole
+      projectDescription
       landingBackground {
         webp: url(imgixParams: {fm: webp, q: 60})
       }
