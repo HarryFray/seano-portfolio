@@ -71,9 +71,10 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
           {project?.projectRole}
         </h2>
         {project?.projectDescription && (
-          <h2 className="text-sm  lg:text-xl text-white mt-4">
-            {project?.projectDescription}
-          </h2>
+          <div
+            className="mt-4 text-white text-center whitespace-pre-wrap leading-5 px-12"
+            dangerouslySetInnerHTML={{ __html: project?.projectDescription }}
+          />
         )}
       </div>
       {(project?.projectImageGallery?.length > 0 ||
