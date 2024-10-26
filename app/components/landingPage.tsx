@@ -46,25 +46,26 @@ const LandingPage = ({ allProjects }: landingPageProps) => {
         <div
           className={`w-[500px] max-w-full flex flex-col mb-10 lg:w-fit lg:m-0`}
         >
-          {allProjects.map((project) => {
-            const { title, slug, id } = project;
+          {allProjects
+            .filter(({ isPrivateProject }) => !isPrivateProject)
+            .map((project) => {
+              const { title, slug, id } = project;
+              const isCurSelectedProject = id === curSelectedProject.id;
 
-            const isCurSelectedProject = id === curSelectedProject.id;
-
-            return (
-              <Fragment key={`${slug}${id}`}>
-                <Link
-                  onMouseEnter={() => setCurSelectedProject(project)}
-                  className={`w-fit text-base font-semibold ${
-                    isCurSelectedProject && "line-through"
-                  } hover:line-through mb-1.5 text-white`}
-                  href={`/project/${slug}`}
-                >
-                  {title}
-                </Link>
-              </Fragment>
-            );
-          })}
+              return (
+                <Fragment key={`${slug}${id}`}>
+                  <Link
+                    onMouseEnter={() => setCurSelectedProject(project)}
+                    className={`w-fit text-base font-semibold ${
+                      isCurSelectedProject && "line-through"
+                    } hover:line-through mb-1.5 text-white`}
+                    href={`/project/${slug}`}
+                  >
+                    {title}
+                  </Link>
+                </Fragment>
+              );
+            })}
         </div>
         {curSelectedProject?.id && (
           <Image

@@ -3,6 +3,7 @@ const buildProjectQuery = (slug: string): string => `
     project(filter: { slug: { eq: "${slug}" } }) {
       id
       title
+      isPrivateProject
       projectVideo
       prevProject {
         slug
@@ -33,6 +34,7 @@ const PROJECTS_QUERY: string = `{
     allProjects {
       id
       title
+      isPrivateProject
       slug
       landingBackground {
         webp: url(imgixParams: {fm: webp, q: 60})

@@ -3,6 +3,7 @@ import { StateCreator, create } from "zustand";
 export interface Project {
   id: string;
   title: string;
+  isPrivateProject: boolean;
   slug: string;
   projectVideo: string;
   prevProject: Project;

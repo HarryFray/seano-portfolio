@@ -39,36 +39,37 @@ const RootLayout = ({ children }: rootLayoutProps) => {
           </Link>
         </div>
         <LandingFadeOut />
-        {allProjects.map(({ title, slug, landingBackground, id }) => {
-          const isCurSelectedProject = id === curSelectedProject.id;
-          const isprevSelectedProject = id === prevSelectedProject.id;
+        {allProjects
+          .map(({ title, slug, landingBackground, id }) => {
+            const isCurSelectedProject = id === curSelectedProject.id;
+            const isprevSelectedProject = id === prevSelectedProject.id;
 
-          return (
-            <div
-              className="fixed"
-              key={`${slug}${id}`}
-              style={{
-                inset: 0,
-                zIndex: isCurSelectedProject ? -1 : -2,
-                animation: isCurSelectedProject
-                  ? "fadeinbackgroundimg 1s"
-                  : "fadeoutbackgroundimg 1s",
-                display:
-                  !isCurSelectedProject && !isprevSelectedProject
-                    ? "none"
-                    : "block",
-              }}
-            >
-              <Image
-                src={landingBackground?.webp}
-                fill
-                objectFit="cover"
-                quality={100}
-                alt={`${title} background image`}
-              />
-            </div>
-          );
-        })}
+            return (
+              <div
+                className="fixed"
+                key={`${slug}${id}`}
+                style={{
+                  inset: 0,
+                  zIndex: isCurSelectedProject ? -1 : -2,
+                  animation: isCurSelectedProject
+                    ? "fadeinbackgroundimg 1s"
+                    : "fadeoutbackgroundimg 1s",
+                  display:
+                    !isCurSelectedProject && !isprevSelectedProject
+                      ? "none"
+                      : "block",
+                }}
+              >
+                <Image
+                  src={landingBackground?.webp}
+                  fill
+                  objectFit="cover"
+                  quality={100}
+                  alt={`${title} background image`}
+                />
+              </div>
+            );
+          })}
         {children}
       </body>
     </html>
