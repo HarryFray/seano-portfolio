@@ -31,6 +31,8 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
     setAllProjects(allProjects);
   }, [project, setCurSelectedProject, allProjects, setAllProjects]);
 
+  const { isPrivateProject } = project;
+
   return (
     <main className="relative pt-24 p-8 lg:p-28">
       <div className="flex flex-col items-center">
@@ -39,7 +41,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
         </h1>
         <div className="relative flex items-center w-full justify-between">
           <div>
-            {project?.prevProject?.slug && (
+            {project?.prevProject?.slug && !isPrivateProject && (
               <Link href={`${project?.prevProject.slug}`}>
                 <span className="text-white text-xl lg:text-4xl cursor-pointer">
                   <FaChevronLeft />
@@ -58,7 +60,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
             }}
           />
           <div>
-            {project?.nextProject?.slug && (
+            {project?.nextProject?.slug && !isPrivateProject && (
               <Link href={`${project?.nextProject.slug}`}>
                 <span className="text-white text-xl lg:text-4xl cursor-pointer">
                   <FaChevronRight />
