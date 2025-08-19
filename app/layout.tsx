@@ -5,6 +5,7 @@ import { useAppStore } from "./global/globalStore";
 import LandingFadeOut from "./components/landingFadeOut";
 import Image from "next/image";
 import Logo from "./components/logo";
+import { usePathname } from "next/navigation";
 
 interface rootLayoutProps {
   children: React.ReactNode;
@@ -13,6 +14,9 @@ interface rootLayoutProps {
 const RootLayout = ({ children }: rootLayoutProps) => {
   const { curSelectedProject, prevSelectedProject, allProjects } =
     useAppStore();
+
+  const pathname = usePathname();
+  const isLandingPage = pathname === "/";
 
   return (
     <html lang="en">
@@ -39,37 +43,60 @@ const RootLayout = ({ children }: rootLayoutProps) => {
           </Link>
         </div>
         <LandingFadeOut />
-        {allProjects
-          .map(({ title, slug, landingBackground, id }) => {
-            const isCurSelectedProject = id === curSelectedProject.id;
-            const isprevSelectedProject = id === prevSelectedProject.id;
+        {isLandingPage && allProjects.length > 0
+          ? // Landing page: Show all backgrounds with fade transitions
+            allProjects.map(({ title, slug, landingBackground, id }) => {
+              const isCurSelectedProject = id === curSelectedProject.id;
+              const isPrevSelectedProject = id === prevSelectedProject.id;
 
-            return (
+              return (
+                <div
+                  className="fixed"
+                  key={`${slug}${id}`}
+                  style={{
+                    inset: 0,
+                    zIndex: isCurSelectedProject ? -1 : -2,
+                    animation: isCurSelectedProject
+                      ? "fadeinbackgroundimg 1s"
+                      : "fadeoutbackgroundimg 1s",
+                    display:
+                      !isCurSelectedProject && !isPrevSelectedProject
+                        ? "none"
+                        : "block",
+                  }}
+                >
+                  {landingBackground?.webp && (
+                    <Image
+                      src={landingBackground.webp}
+                      fill
+                      objectFit="cover"
+                      quality={100}
+                      alt={`${title} background image`}
+                    />
+                  )}
+                </div>
+              );
+            })
+          : // Other pages: Show only current project background
+            curSelectedProject?.id &&
+            curSelectedProject?.landingBackground?.webp && (
               <div
                 className="fixed"
-                key={`${slug}${id}`}
                 style={{
                   inset: 0,
-                  zIndex: isCurSelectedProject ? -1 : -2,
-                  animation: isCurSelectedProject
-                    ? "fadeinbackgroundimg 1s"
-                    : "fadeoutbackgroundimg 1s",
-                  display:
-                    !isCurSelectedProject && !isprevSelectedProject
-                      ? "none"
-                      : "block",
+                  zIndex: -1,
+                  animation: "fadeinbackgroundimg 1s",
                 }}
               >
                 <Image
-                  src={landingBackground?.webp}
+                  src={curSelectedProject.landingBackground.webp}
                   fill
                   objectFit="cover"
                   quality={100}
-                  alt={`${title} background image`}
+                  alt={`${curSelectedProject.title} background image`}
                 />
               </div>
-            );
-          })}
+            )}
         {children}
       </body>
     </html>

@@ -12,18 +12,18 @@ const buildProjectQuery = (slug: string): string => `
         slug
       }
       landingGif {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
       }
       projectRole
       projectDescription
       landingBackground {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
       }
       projectImageGallery {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
       }
       projectVideoGallery {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
         customData
       }
     }
@@ -37,16 +37,16 @@ const PROJECTS_QUERY: string = `{
       isPrivateProject
       slug
       landingBackground {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
       }
       landingGif {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
       }
       projectImageGallery {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
       }
       projectVideoGallery {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
         customData
       }
     }
@@ -55,7 +55,7 @@ const PROJECTS_QUERY: string = `{
 const SEAN_INFO_QUERY: string = `{
     seanInfo {
       workImage {
-        webp: url(imgixParams: {fm: webp, q: 60})
+        webp: url(imgixParams: {fm: webp, q: 80, auto: compress})
       }
       contactPageText
     }
