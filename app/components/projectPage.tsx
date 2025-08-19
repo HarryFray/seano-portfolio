@@ -9,11 +9,10 @@ import useScreenSize from "../hooks/useWindowSizeHook";
 
 interface projectProps {
   project: Project;
-  allProjects: Project[];
 }
 
-const ProjectPage = ({ project, allProjects }: projectProps) => {
-  const { setCurSelectedProject, setAllProjects } = useAppStore();
+const ProjectPage = ({ project }: projectProps) => {
+  const { setCurSelectedProject } = useAppStore();
 
   const screenSize = useScreenSize();
 
@@ -28,8 +27,7 @@ const ProjectPage = ({ project, allProjects }: projectProps) => {
 
   useEffect(() => {
     setCurSelectedProject(project);
-    setAllProjects(allProjects);
-  }, [project, setCurSelectedProject, allProjects, setAllProjects]);
+  }, [project, setCurSelectedProject]);
 
   const { isPrivateProject } = project;
 
