@@ -4,13 +4,13 @@ import ProjectPage from "../../components/projectPage";
 import { buildProjectQuery } from "../../global/queries";
 import { useQuerySubscription } from "react-datocms";
 
-interface projectProps {
+interface PageProps {
   params: {
     project_id: string;
   };
 }
 
-const Project = ({ params }: projectProps) => {
+export default function Project({ params }: PageProps) {
   const {
     status: projectStatus,
     data: projectData,
@@ -32,6 +32,4 @@ const Project = ({ params }: projectProps) => {
   const project: Project = projectData.project;
 
   return <ProjectPage project={project} />;
-};
-
-export default Project;
+}
