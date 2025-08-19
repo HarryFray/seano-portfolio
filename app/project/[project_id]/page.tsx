@@ -1,5 +1,5 @@
 "use client";
-import { Project } from "../../global/globalStore";
+import type { Project } from "../../global/globalStore";
 import ProjectPage from "../../components/projectPage";
 import { buildProjectQuery, PROJECTS_QUERY } from "../../global/queries";
 import { useQuerySubscription } from "react-datocms";
