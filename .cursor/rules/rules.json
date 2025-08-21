@@ -1,0 +1,82 @@
+{
+  "projectRules": [
+    {
+      "name": "Framework and Dependencies",
+      "description": "Always use the latest stable versions of Next.js, React, and TailwindCSS.",
+      "dependencies": {
+        "next": "latest",
+        "react": "latest",
+        "react-dom": "latest",
+        "tailwindcss": "latest",
+        "autoprefixer": "latest",
+        "postcss": "latest"
+      },
+      "devDependencies": {
+        "eslint": "latest",
+        "eslint-config-next": "latest",
+        "prettier": "latest",
+        "prettier-plugin-tailwindcss": "latest",
+        "typescript": "latest"
+      }
+    },
+    {
+      "name": "TypeScript Configuration",
+      "description": "Ensure strict TypeScript rules for better DX and fewer runtime errors.",
+      "tsconfig": {
+        "compilerOptions": {
+          "target": "ESNext",
+          "lib": ["dom", "dom.iterable", "esnext"],
+          "allowJs": false,
+          "skipLibCheck": true,
+          "strict": true,
+          "forceConsistentCasingInFileNames": true,
+          "noEmit": true,
+          "esModuleInterop": true,
+          "module": "ESNext",
+          "moduleResolution": "Node",
+          "resolveJsonModule": true,
+          "isolatedModules": true,
+          "jsx": "preserve",
+          "incremental": true,
+          "baseUrl": ".",
+          "paths": {
+            "@/*": ["./src/*"]
+          }
+        },
+        "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+        "exclude": ["node_modules"]
+      }
+    },
+    {
+      "name": "Linting and Formatting",
+      "description": "Follow ESLint (Next.js + TailwindCSS) and Prettier rules consistently.",
+      "eslintConfig": {
+        "extends": [
+          "next/core-web-vitals",
+          "eslint:recommended",
+          "plugin:@typescript-eslint/recommended",
+          "prettier"
+        ],
+        "plugins": ["@typescript-eslint", "prettier"],
+        "rules": {
+          "prettier/prettier": "error",
+          "react/react-in-jsx-scope": "off",
+          "@typescript-eslint/no-unused-vars": [
+            "warn",
+            { "argsIgnorePattern": "^_" }
+          ]
+        }
+      },
+      "prettierConfig": {
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "tabWidth": 2,
+        "printWidth": 100,
+        "plugins": ["prettier-plugin-tailwindcss"]
+      }
+    }
+  ]
+}
+
+
