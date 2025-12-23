@@ -32,7 +32,7 @@ export interface GlobalState {
   prevSelectedProject: Project;
   allProjects: Project[];
   globalLoading: boolean;
-  setCurSelectedProject: (product: Project) => void;
+  setCurSelectedProject: (project: Project) => void;
   setAllProjects: (projects: Project[]) => void;
   setGlobalLoading: (loading: boolean) => void;
 }
