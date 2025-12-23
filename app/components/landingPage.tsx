@@ -42,6 +42,9 @@ const LandingPage = ({ allProjects }: landingPageProps) => {
 
   return (
     <main className="min-h-screen">
+      <h1 className="fixed top-6 left-1/2 -translate-x-1/2 z-20 text-white text-2xl sm:text-3xl lg:text-5xl font-bold pointer-events-none">
+        {curSelectedProject?.title ?? ""}
+      </h1>
       <div className="mx-8 flex flex-col items-center justify-center min-h-screen lg:flex-row lg:justify-between lg:mx-40">
         <div
           className={`w-[500px] max-w-full flex flex-col mb-10 lg:w-fit lg:m-0`}

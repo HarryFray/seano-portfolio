@@ -8,7 +8,9 @@ import { RemoveScroll } from "react-remove-scroll";
 // import { IoClose } from "react-icons/io5";
 
 const checkIfElementIsInViewport = (element: Element | null): boolean => {
-  if (!element) return false;
+  if (!element) {
+    return false;
+  }
 
   const rect = element?.getBoundingClientRect();
   return (
@@ -101,7 +103,6 @@ const ProjectGallery = ({
           ))}
           {galleryVideos.map(({ webp, customData }, i) => {
             const { videoLink } = customData;
-            console.log({ videoLink });
             return (
               <div
                 key={i}
